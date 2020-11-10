@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mydbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tdcode">
+          <Key>
+            <PropertyRef Name="code_id" />
+            <PropertyRef Name="code_type" />
+          </Key>
+          <Property Name="code_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="code_type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="code_value" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="translate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cht" Type="nvarchar" MaxLength="30" />
+          <Property Name="chs" Type="nvarchar" MaxLength="30" />
+          <Property Name="jpn" Type="nvarchar" MaxLength="30" />
+          <Property Name="eng" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityContainer Name="mydbModelStoreContainer">
+          <EntitySet Name="tdcode" EntityType="Self.tdcode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="translate" EntityType="Self.translate" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tdcode">
+          <Key>
+            <PropertyRef Name="code_id" />
+            <PropertyRef Name="code_type" />
+          </Key>
+          <Property Name="code_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="code_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="code_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="mydbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tdcode" EntityType="Self.tdcode" />
+          <EntitySet Name="translate" EntityType="mydbModel.translate" />
+        </EntityContainer>
+        <EntityType Name="translate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cht" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="chs" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="jpn" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="eng" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mydbModelStoreContainer" CdmEntityContainer="mydbEntities">
+          <EntitySetMapping Name="tdcode">
+            <EntityTypeMapping TypeName="mydbModel.tdcode">
+              <MappingFragment StoreEntitySet="tdcode">
+                <ScalarProperty Name="code_id" ColumnName="code_id" />
+                <ScalarProperty Name="code_type" ColumnName="code_type" />
+                <ScalarProperty Name="code_value" ColumnName="code_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="translate">
+            <EntityTypeMapping TypeName="mydbModel.translate">
+              <MappingFragment StoreEntitySet="translate">
+                <ScalarProperty Name="eng" ColumnName="eng" />
+                <ScalarProperty Name="jpn" ColumnName="jpn" />
+                <ScalarProperty Name="chs" ColumnName="chs" />
+                <ScalarProperty Name="cht" ColumnName="cht" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
