@@ -67,15 +67,9 @@ namespace CyclingWorkoutRobot
             KillChromeDriver("chrome");
 
             lblMsg.Text = "";
-
-            //chkShowAdv.Visible = false;//for now, this option is not available for user.
-
-
-
+         
             txtFTP.LostFocus += txtFTP_LostFocus;
-
-            //btnOpenFile.Focus();
-
+       
             CreateDtColumns();
             CreateGridColumns();
 
@@ -112,10 +106,7 @@ namespace CyclingWorkoutRobot
                 if (Common.IsNumeric(txtFTP.Text) == true)
                 {
                     //update ftp setting in db
-                    dbRepo.InserUpdateUserFTP(userId, txtFTP.Text);
-                    //string msg = "FTP updated!".ToDefaultLanguage();
-                    //MessageBox.Show(msg);
-
+                    dbRepo.InserUpdateUserFTP(userId, txtFTP.Text);                    
                 }
 
 
@@ -155,8 +146,7 @@ namespace CyclingWorkoutRobot
             //SetMultiLanguage();
             LoadDefaultLanguageFromDB();
             if (pageLoadING == false)
-            {
-                //MessageBox.Show("Language changed, please reopen app!".ToDefaultLanguage());
+            {               
                 txtOutput.Text = "Language changed, please reopen app!".ToDefaultLanguage();
             }
         }
@@ -284,11 +274,7 @@ namespace CyclingWorkoutRobot
                     }
 
 
-                    //txtLoginId.Visible = true;
-                    //txtPassword.Visible = true;
-                    //lblIdPwd.Visible = true;
-                    //lblSlash.Visible = true;
-                    //btnSaveIdPwd.Visible = true;
+                   
 
                     MessageBox.Show("Hide web browser option will login automatically.".ToDefaultLanguage()
                    + Environment.NewLine
@@ -297,12 +283,7 @@ namespace CyclingWorkoutRobot
 
                 }
                 else
-                {
-                    //txtLoginId.Visible = false;
-                    //txtPassword.Visible = false;
-                    //lblIdPwd.Visible = false;
-                    //lblSlash.Visible = false;
-                    //btnSaveIdPwd.Visible = false;
+                {                   
 
                     //if unchecking (hideBrowser checkbox) and (only remember id/pwd checkbox)
                     //at the same time, remove id/pwd from local db
@@ -395,7 +376,7 @@ namespace CyclingWorkoutRobot
                     txtOutput.AppendText(Environment.NewLine + outputText);
                 }
 
-                //txtOutput.Text = txtOutput.Text + Environment.NewLine + outputText;
+                
                 outputText = "";
             }
 
@@ -423,25 +404,7 @@ namespace CyclingWorkoutRobot
 
         private void bwUpload_DoWork(object sender, DoWorkEventArgs e)
         {
-            //for (int i = 0; i < gridWorkout.Rows.Count - 1; i++)
-            //{
-            //    DataGridViewRow row = gridWorkout.Rows[i];
-
-            //    int rowNo = (int)row.Cells[no].Value;
-            //    bool rowChosenToUpload = (bool)row.Cells["Upload".ToDefaultLanguage()].Value;
-            //    string rowWorkoutName = (string)row.Cells[workoutName.ToDefaultLanguage()].Value;
-            //    string rowWorkoutLength = (string)row.Cells[workoutLength.ToDefaultLanguage()].Value;
-            //    string rowFullFilePath = (string)row.Cells[fullFilePath].Value;
-            //    string rowUploadFinished = (string)row.Cells[uploadFinished.ToDefaultLanguage()].Value;
-            //    string rowResult;
-            //    rowResult = "No:" + rowNo + ",ChosenToUpload:" + rowChosenToUpload
-            //        + ",WorkoutName:" + rowWorkoutName + ",WorkoutLength:" + rowWorkoutLength
-            //        + ",FullFilePath:" + rowFullFilePath + ",UploadFinished:" + rowUploadFinished
-            //        ;
-            //    row.Cells[uploadFinished.ToDefaultLanguage()].Value = "Yes".ToDefaultLanguage();// no err
-            //    txtOutput.Text = txtOutput.Text + rowResult + Environment.NewLine;//error occur
-            //}
-            //return;
+           
             string regPattern;
             AppendOutput("Robot starts working.");
             AppendOutput("Checking chromedriver exists or not.");
@@ -535,12 +498,7 @@ namespace CyclingWorkoutRobot
                 string rowFullFilePath = (string)row.Cells[fullFilePath].Value;
                 string rowUploadFinished = (string)row.Cells[uploadFinished.ToDefaultLanguage()].Value;
                 string rowResult;
-                //rowResult = "No:" + rowNo + ",ChosenToUpload:" + rowChosenToUpload
-                //    + ",WorkoutName:" + rowWorkoutName + ",WorkoutLength:" + rowWorkoutLength
-                //    + ",FullFilePath:" + rowFullFilePath + ",UploadFinished:" + rowUploadFinished
-                //    ;
-
-                //txtOutput.Text = txtOutput.Text + rowResult + Environment.NewLine;
+               
                 if (rowUploadFinished == "Yes".ToDefaultLanguage())
                 {
                     continue;
@@ -948,13 +906,7 @@ namespace CyclingWorkoutRobot
 
         private void CreateDtColumns()
         {
-            //dtWorkout.Columns.Add("No", typeof(int));
-            //dtWorkout.Columns.Add("ChosenToUpload", typeof(bool));
-            //dtWorkout.Columns.Add("WorkoutName", typeof(string));
-            //dtWorkout.Columns.Add("WorkoutLength", typeof(string));
-            //dtWorkout.Columns.Add("WorkoutCurve", typeof(byte[]));
-            //dtWorkout.Columns.Add("FullFilePath", typeof(string));
-            //dtWorkout.Columns.Add("UploadFinished", typeof(string));
+           
             dtWorkout.Columns.Add(no, typeof(int));
             dtWorkout.Columns.Add(chosenToUpload, typeof(bool));
             dtWorkout.Columns.Add(workoutName, typeof(string));
@@ -1036,15 +988,7 @@ namespace CyclingWorkoutRobot
                 this.gridWorkout.Columns[uploadFinished.ToDefaultLanguage()].DefaultCellStyle.Alignment =
                           DataGridViewContentAlignment.MiddleCenter;
 
-                //string fullFilePath = "FullFilePath";
-                //gridWorkout.Columns.Add(new DataGridViewTextBoxColumn()
-                //{
-                //    DataPropertyName = workoutLength,
-                //    Name = workoutLength.ToDefaultLanguage(),
-
-                //});
-                //this.gridWorkout.Columns[workoutLength.ToDefaultLanguage()].DefaultCellStyle.Alignment =
-                //    DataGridViewContentAlignment.MiddleCenter;
+               
 
             }
         }
@@ -1129,24 +1073,7 @@ namespace CyclingWorkoutRobot
         {
             using (mydbEntities db = new mydbEntities())
             {
-
-                ////set text of language setup label
-                //var languageLbl = db.translate.Where(t => t.eng == "Language").FirstOrDefault();
-                ////set text of remember FTP checkbox
-                //var rememberFTPCheckbox = db.translate.Where(t => t.eng == "remember FTP").FirstOrDefault();
-                ////set text of open file button
-                //var openCsvFileButton = db.translate.Where(t => t.eng == "select workout file").FirstOrDefault();
-                ////upload button 
-                //var uploadButton = db.translate.Where(t => t.eng == "Upload").FirstOrDefault();
-                ////checkbox: Show Advanced Options
-                //var showAdvancedOptionsCheckbox = db.translate.Where(t => t.eng == "Show Advanced Options").FirstOrDefault();
-                ////checkbox: Hide Web Browser and remember id/password
-                //var hideWebBrowserCheckbox = db.translate.Where(t => t.eng == "Hide Web Browser and remember id/password").FirstOrDefault();
-                ////checkbox: remember id/password only
-                //var rememberIdPwdCheckbox = db.translate.Where(t => t.eng == "Only remember Id/Password").FirstOrDefault();
-                ////save button
-                //var saveLoginPwdButton = db.translate.Where(t => t.eng == "Save").FirstOrDefault();
-
+              
                 //set text of language setup label
                 var languageLbl = dbRepo.GetTranslateObj("Language");
                 //set text of remember FTP checkbox
@@ -1164,9 +1091,7 @@ namespace CyclingWorkoutRobot
                 //save button
                 var saveLoginPwdButton = dbRepo.GetTranslateObj("Save");
                 //example wokrout file button
-                var exampleWorkoutFileButton = dbRepo.GetTranslateObj("example workout file");
-               
-
+                var exampleWorkoutFileButton = dbRepo.GetTranslateObj("example workout file");               
 
                 if (defaultLanguage == LanguageOption.English)
                 {
@@ -1217,9 +1142,7 @@ namespace CyclingWorkoutRobot
                     btnExampleWorkoutFileDownload.Text = exampleWorkoutFileButton.cht;
                 }
                 lblLanguage.Text = lblLanguage.Text + ":";
-                //chkRememberFTP.Text = chkRememberFTP.Text + ":";
-
-
+               
 
             }
 
@@ -1313,7 +1236,7 @@ namespace CyclingWorkoutRobot
             Bitmap originalBmp = new Bitmap(bmpOriginalWidth, bmpHeight);
             Graphics originalBmpGraphics = Graphics.FromImage(originalBmp);
             int localBaseX = 0;
-            int localBaseY = 125;//寬度400適用
+            int localBaseY = 125;//good for width:400px
 
 
             string[] lines = File.ReadAllLines(fileName);
@@ -1382,39 +1305,7 @@ namespace CyclingWorkoutRobot
             WorkoutNo++;
         }
 
-        //private void InsertUserLoginIdPwdToDB()
-        //{
-        //    string codeId = "UserLoginIdPwd";
-        //    string codeType = "AutoLogin";
-        //    string notEncryptedStr = txtLoginId.Text.Trim() + "," + txtPassword.Text.Trim();
-        //    string encryptedStr = Common.CryptEncryptString(notEncryptedStr);
-
-        //    using (mydbEntities db = new mydbEntities())
-        //    {
-        //        var loginObj = db.tdcode.Where(t => t.code_id == codeId && t.code_type == codeType).FirstOrDefault();
-
-        //        //if not exist => insert
-        //        if (loginObj == null)
-        //        {
-        //            tdcode param = new tdcode();
-        //            param.code_id = codeId;
-        //            param.code_type = codeType;
-        //            param.code_value = encryptedStr;
-
-        //            db.tdcode.Add(param);
-        //        }
-        //        else
-        //        {
-        //            //if exists => update
-        //            loginObj.code_value = encryptedStr;
-
-        //        }
-
-
-        //        db.SaveChanges();
-        //    }
-        //}
-
+       
         private string GetIdPwdFromDB()
         {
             string idPwd = "";
@@ -1422,16 +1313,7 @@ namespace CyclingWorkoutRobot
             {
                 var idPwdObj = db.tdcode.Where(t => t.code_id == "UserLoginIdPwd" && t.code_type == "AutoLogin").FirstOrDefault();
                 if (idPwdObj != null)
-                {
-                    //idPwd = idPwdObj.code_value;
-                    //string decryptedIdPwd = Common.CryptDecryptString(idPwdObj.code_value);
-
-                    ////string encryptedId = idPwdObj.code_value.Split(',')[0];
-                    ////string encryptedPwd = idPwdObj.code_value.Split(',')[1];
-
-                    //string decryptedId = decryptedIdPwd.Split(',')[0];
-                    //string decryptedPwd = decryptedIdPwd.Split(',')[1];
-
+                {                   
                     idPwd = Common.CryptDecryptString(idPwdObj.code_value);
                 }
 

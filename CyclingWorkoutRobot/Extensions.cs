@@ -11,10 +11,7 @@ namespace CyclingWorkoutRobot
     public static class Extensions
     {
       
-        //public static  string langCodeId = "defaultlanguage";
-        //public static string langCodeType = "param";
-        //public static LanguageOption defaultLanguage =
-        //   Common.LanguageOptionStringToEnum(System.Configuration.ConfigurationManager.AppSettings["DefaultLanguage"]);
+   
 
         public static string ToDefaultLanguage(this string engMsg)
         {

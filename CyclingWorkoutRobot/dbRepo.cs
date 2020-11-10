@@ -38,7 +38,6 @@ namespace CyclingWorkoutRobot
                     //data exist: update data
                     userSelectLanguageObj.code_value = userSelectLanguage;
 
-                    //defaultLanguage = Common.LanguageOptionStringToEnum(userSelectLanguageObj.code_value);
                 }
                 else
                 {

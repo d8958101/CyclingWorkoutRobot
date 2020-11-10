@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 namespace CyclingWorkoutRobot
 {
     public class Models
-    {
-		
-
+    {		
 		public enum LanguageOption
 		{
 			English,
