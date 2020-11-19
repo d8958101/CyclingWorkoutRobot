@@ -47,6 +47,7 @@ namespace CyclingWorkoutRobot
 
         public string exampleWorkoutFileBase64 = "cG93ZXIgcGVyY2VudGFnZSBsb3dlciBib3VuZCxwb3dlciBwZXJjZW50YWdlIHVwcGVyIGJvdW5kLHRpbWUoc2Vjb25kKQ0KNTAsNTAsMzAwDQo5MCw5MCwxMjANCjYwLDYwLDcyMA0KODAsODAsNjANCg==";
 
+       
         #endregion
 
 
@@ -404,8 +405,8 @@ namespace CyclingWorkoutRobot
 
         private void bwUpload_DoWork(object sender, DoWorkEventArgs e)
         {
-           
-            string regPattern;
+
+            string regPattern = @"" ;
             AppendOutput("Robot starts working.");
             AppendOutput("Checking chromedriver exists or not.");
             if (Process.GetProcessesByName("chromedriver").Count() == 0)
@@ -422,13 +423,23 @@ namespace CyclingWorkoutRobot
                     chromeBrowserOptions.AddArgument("headless");
                     chromeArguments.Add("headless");
                 }
-                driver = new ChromeDriver(driverService, chromeBrowserOptions);
-                AppendOutput("Preparing to login.");
-                bool loginSuccess = Login();
-                if (loginSuccess == true)
+              
+                driver = new ChromeDriver(driverService, chromeBrowserOptions);                
+                LoadCookieFromFile();
+                AppendOutput("Checking login status.");
+                regPattern = @"main-nav-group dashboards";
+                bool isLoginSuccess = WaitForSomething(regPattern, 5);
+                
+                if(isLoginSuccess == false)
+                {
+                    AppendOutput("Preparing to login.");
+                    isLoginSuccess = Login();
+                }
+               
+                if (isLoginSuccess == true)
                 {
                     AppendOutput("Login finished.");
-
+                    SaveNewCookie();
                 }
                 else
                 {
@@ -464,13 +475,15 @@ namespace CyclingWorkoutRobot
                     driverService.HideCommandPromptWindow = true;
                     chromeBrowserOptions.AddArguments(chromeArguments);//save pc resource
 
-                    driver = new ChromeDriver(driverService, chromeBrowserOptions);
-                    
+                    driver = new ChromeDriver(driverService, chromeBrowserOptions);                   
+                    LoadCookieFromFile();
+                    isLoginSuccess = WaitForSomething(regPattern, 5);
                 }
                 
                 if (isLoginSuccess == true)
                 {
                     //do nothing
+                    SaveNewCookie();
                 }
                 else
                 {
@@ -481,6 +494,10 @@ namespace CyclingWorkoutRobot
                         bwUpload.CancelAsync();
                         e.Cancel = true;
                         return;
+                    }
+                    else
+                    {
+                        SaveNewCookie();
                     }
                 }
             }
@@ -532,10 +549,12 @@ namespace CyclingWorkoutRobot
 
         private bool Login()
         {
+            
             //bool loginSuccess = true;   
             string regPattern = @"";
             string msg = @"";
             driver.Navigate().GoToUrl("https://connect.garmin.com/");
+            
             //prevent RWD to hide element
 
             driver.Manage().Window.Maximize();
@@ -904,6 +923,7 @@ namespace CyclingWorkoutRobot
         private string fullFilePath = "FullFilePath";
         private string uploadFinished = "UploadFinished";
 
+
         private void CreateDtColumns()
         {
            
@@ -1051,6 +1071,8 @@ namespace CyclingWorkoutRobot
                 }
             }
         }
+       
+
         #endregion
 
 
@@ -1325,6 +1347,84 @@ namespace CyclingWorkoutRobot
 
         #endregion
 
-      
+
+        #region cookie related
+
+        private string expiryDateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+        // Create a file to store Login Information 
+        string cookieFileName = "Cookiefile.txt";
+        private void LoadCookieFromFile()
+        {            
+            if(File.Exists(cookieFileName) == true)
+            {
+                driver.Manage().Cookies.DeleteAllCookies();
+                driver.Navigate().GoToUrl("https://connect.garmin.com/");
+                string[] lines = System.IO.File.ReadAllLines(cookieFileName);
+                foreach(var line in lines)
+                {
+                    string[] cookieInfoArr = line.Split(';');
+                    string name = cookieInfoArr[0];
+                    string value = cookieInfoArr[1];
+                    string domain = cookieInfoArr[2];
+                    string path = cookieInfoArr[3];
+                    string expiry = cookieInfoArr[4];
+                    DateTime? expiryVarNullable = null;
+                    if(!string.IsNullOrEmpty(expiry))
+                    {
+                        DateTime expiryVar = DateTime.ParseExact(expiry,
+                                                   expiryDateTimeFormat,
+                                                   System.Globalization.CultureInfo.InvariantCulture);
+                        expiryVarNullable = expiryVar;
+                    }
+                   
+                    
+                    string secure = cookieInfoArr[5];
+                    Cookie ck = new Cookie(name, value, path, expiryVarNullable);
+                    //ck.Domain = domain;
+                    //ck.Secure = Convert.ToBoolean(secure);
+                    driver.Manage().Cookies.AddCookie(ck);
+
+                }
+                //go to garmin again and we have cookie now, so no need to login again
+                driver.Navigate().GoToUrl("https://connect.garmin.com/");
+                driver.Manage().Window.Maximize();
+            }
+        }
+
+        private void SaveNewCookie()
+        {            
+            try
+            {
+                File.Delete(cookieFileName);
+                using (System.IO.StreamWriter file =new System.IO.StreamWriter(cookieFileName))
+                {
+                    foreach(var ck in driver.Manage().Cookies.AllCookies)
+                    {
+                        string expiryString = string.Empty;
+                        if(ck.Expiry == null)
+                        {
+                            // do nothing
+                        }
+                        else
+                        {
+                            DateTime tempExpriry = Convert.ToDateTime(ck.Expiry);
+                            expiryString = tempExpriry.ToString(expiryDateTimeFormat);
+                        }
+
+                        string line = ck.Name + ";" + ck.Value + ";" + ck.Domain + ";" + ck.Path + ";" 
+                            + expiryString + ";" + ck.Secure.ToString();
+                        file.WriteLine(line);
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            {
+                AppendOutput("SaveNewCookie() fail:" + ex.Message);
+            }
+            
+        }
+
+        #endregion
     }
 }
