@@ -562,9 +562,9 @@ namespace CyclingWorkoutRobot
             //agree cookies
             regPattern = @"truste-consent-button";
             WaitForSomething(regPattern);
-            IWebElement agreeBtn = driver.FindElement(By.CssSelector("button[id='truste-consent-button']"));
             try
             {
+                IWebElement agreeBtn = driver.FindElement(By.CssSelector("button[id='truste-consent-button']"));
                 agreeBtn.Click();
                 AppendOutput("Click truste-consent-button");
             }
@@ -595,7 +595,18 @@ namespace CyclingWorkoutRobot
                 AppendOutput(msg.ToDefaultLanguage());
                 return false;
             }
-            ((IJavaScriptExecutor)driver).ExecuteScript("document.querySelector('a[href*=signin]').click()");
+
+            try
+            {
+                //sometimes although the upper right text on screen tells you are loginned
+                //the page still show id/pwd column to input
+                ((IJavaScriptExecutor)driver).ExecuteScript("document.querySelector('a[href*=signin]').click()");
+
+            }
+            catch
+            {
+
+            }
 
             regPattern = @"https://sso.garmin.com/sso/signin";
             WaitForSomething(regPattern);
