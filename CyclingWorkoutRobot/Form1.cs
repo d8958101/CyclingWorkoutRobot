@@ -47,9 +47,10 @@ namespace CyclingWorkoutRobot
 
         public string exampleWorkoutFileBase64 = "cG93ZXIgcGVyY2VudGFnZSBsb3dlciBib3VuZCxwb3dlciBwZXJjZW50YWdlIHVwcGVyIGJvdW5kLHRpbWUoc2Vjb25kKQ0KNTAsNTAsMzAwDQo5MCw5MCwxMjANCjYwLDYwLDcyMA0KODAsODAsNjANCg==";
 
-       
+
         #endregion
 
+        #region Form events
 
         public Form1()
         {
@@ -68,9 +69,9 @@ namespace CyclingWorkoutRobot
             KillChromeDriver("chrome");
 
             lblMsg.Text = "";
-         
+
             txtFTP.LostFocus += txtFTP_LostFocus;
-       
+
             CreateDtColumns();
             CreateGridColumns();
 
@@ -97,6 +98,17 @@ namespace CyclingWorkoutRobot
             btnOpenFile.Select();
             pageLoadING = false;
         }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            KillChromeDriver("chrome");
+          
+        }
+
+
+        #endregion
+
+
 
         #region Events
 
@@ -1437,5 +1449,7 @@ namespace CyclingWorkoutRobot
         }
 
         #endregion
+
+      
     }
 }
