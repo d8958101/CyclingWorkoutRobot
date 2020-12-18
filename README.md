@@ -19,10 +19,10 @@ Any edge head unit later than 520(ex:edge 520 plus, edge 820, edge 1030 plus...)
 1. click "example workout file" button to download sample workout file.
 2. click "select workout file" button then select sample file we just downloaded in step 1.
 3. click "upload" button then garmin connect website page will pop up.
-4. input your garmin id/password, done.
+4. input your garmin id/password and click login, done. Robot will automatically finish all the things and create a workout for you.
 
 Example workout is a 50% FTP(5mins) => 90% FTP(2mins) => 60% FTP(12mins) => 80% FTP(1min) session.
-Edit example workout to satisfy your needs by using Excel.
+Edit example workout to satisfy your needs by using Excel or notepad.
 
 This tool is open source, so it is safe to use. Happy cycling :D
 
