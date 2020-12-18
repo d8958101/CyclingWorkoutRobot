@@ -26,12 +26,9 @@ Edit example workout to satisfy your needs by using Excel.
 
 This tool is open source, so it is safe to use. Happy cycling :D
 
-ps. CyclingWorkoutRobot readme google document detail version(text and pictures)(English):
-
-https://docs.google.com/document/d/1dsmxPuhwef7LMSgwr1lcfuXUp12wXKc0YNznn8IJY0w/edit?usp=sharing
-
-
-
+ps. CyclingWorkoutRobot readme google document detail version(text and pictures)(English):<br/>https://docs.google.com/document/d/1dsmxPuhwef7LMSgwr1lcfuXUp12wXKc0YNznn8IJY0w/edit?usp=sharing
+<br/>
+<br/>
 1. 「サンプルファイル」ボタンをクリックして、サンプル workout ファイルをダウンロードします。
 2. 「パワートレーニング .csv ファイルを選択します」ボタンをクリックしてから、手順1でダウンロードしたサンプルファイルを選択します。
 3. 「アップロード」ボタンをクリックすると、garmin connectのWebサイトページがポップアップ表示されます。
