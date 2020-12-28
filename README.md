@@ -1,4 +1,4 @@
-# CyclingWorkoutRobot
+# CyclingWorkoutRobot(English/日本語/繁體中文/簡體中文)
 ## Introduction/前書き/簡介/简介:<br/>
 This is a robot to help cyclists automatically create cycling workouts(power based) on garmin connect website. 
 Then you can sync these workouts to your garmin edge head unit and start your training. 
