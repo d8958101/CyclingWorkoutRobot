@@ -3,11 +3,12 @@
 This is a robot to help cyclists automatically create cycling workouts(power based) on garmin connect website. 
 Then you can sync these workouts to your garmin edge head unit and start your training. 
 Any edge head unit later than 520(ex:edge 520 plus, edge 820, edge 1030 plus...) supports power based cycling workouts.<br/>
-Download the latest release on right side of the page, then you can execute it on Windows 10(not sure for Windows 7).
+Download the latest release on right side of the page, then you can execute it on Windows 10(Windows 7 should be OK, too).
 
 これは、サイクリストがgarmin connect で Cycling Workouts（power based）を自動的に作成するのを支援するtoolです。
 これらの workouts を garmin edge に同期して、トレーニングを開始できます。
-520以降の edge（ex：edge 520 plus、edge 820、edge 1030 plus ...）は、使用しても大丈夫です。
+520以降の edge（ex：edge 520 plus、edge 820、edge 1030 plus ...）は、使用しても大丈夫です。<br/>
+ページの右側にある最新toolをダウンロードすると、Windows 10で実行できます（Windows7も大丈夫なはずです）
 
 這是幫助自行車騎士將功率訓練課程自動在garmin connect建立的工具
 把課程從garmin connect再同步到edge碼表即可開始訓練
