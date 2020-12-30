@@ -24,24 +24,27 @@ Download the latest release on right side of the page, then you can execute it o
 ## Basic usage/基本的な使い方/基本操作方式/基本操作方式
 1. click "example workout file" button to download sample workout file.
 2. click "select workout file" button then select sample file we just downloaded in step 1.
-3. click "upload" button then garmin connect website page will pop up.
-4. input your garmin id/password and click login, done. Robot will automatically finish all the things and create a workout for you.
+3. click "upload" button then Garmin Connect website page will pop up.
+4. input your Garmin id/password and click login, done. Robot will automatically finish all the things and create a workout for you.
 
-Example workout is a 50% FTP(5mins) => 90% FTP(2mins) => 60% FTP(12mins) => 80% FTP(1min) session.
-Edit example workout to satisfy your needs by using Excel or notepad.This tool is open source, so it is safe to use. Happy cycling :D
+Example workout is a 50% FTP(5mins) => 90% FTP(2mins) => 60% FTP(12mins) => 80% FTP(1min) session.<br/>
+Edit example workout to satisfy your needs by using Excel or notepad.This tool is open source, so feel free to use it. Happy cycling :D
 <br/>
-ps. CyclingWorkoutRobot readme google document detail version(text and pictures)(English):<br/>https://docs.google.com/document/d/1dsmxPuhwef7LMSgwr1lcfuXUp12wXKc0YNznn8IJY0w/edit?usp=sharing
+ps. CyclingWorkoutRobot readme google document detail version(well-illustrated and well-written)(English):<br/>
+https://docs.google.com/document/d/1dsmxPuhwef7LMSgwr1lcfuXUp12wXKc0YNznn8IJY0w/edit?usp=sharing
 <br/>
 <br/>
-1. 「サンプルファイル」ボタンをクリックして、サンプル workout ファイルをダウンロードします。
-2. 「パワートレーニング .csv ファイルを選択します」ボタンをクリックしてから、手順1でダウンロードしたサンプルファイルを選択します。
-3. 「アップロード」ボタンをクリックすると、garmin connectのWebサイトページがポップアップ表示されます。
-4. 入力 garmin id/password, 終わり.
+1. 「サンプルファイル」ボタンをクリックして、サンプルファイルをダウンロードします.
+2. 「パワートレーニング .csv ファイルを選択します」ボタンをクリックしてから、手順1でダウンロードしたサンプルファイルを選択します.
+3. 「アップロード」ボタンをクリックすると、Garmin ConnectのWebサイトページがポップアップ表示されます.
+4. 入力 Garmin id/password, 終わり.次に、このツールは自動的にワークアウトを作成します.
 
 サンプルファイルの内容は 50% FTP(5mins) => 90% FTP(2mins) => 60% FTP(12mins) => 80% FTP(1min)
 自分の workout を編集するのに必要なのはExcelだけです, このプログラムは open sourceです, だから安全に使用できます. ハッピーサイクリング :D
 <br/>
+ps. CyclingWorkoutRobot readme google document 詳細バージョン（イラストが多く表現もすぐれており、とても理解し易い仕上がりとなっている）（日本語）
 <br/>
+
 1. 點選“範例.csv檔”按鈕以下載範例課程。
 2. 點選“選擇.csv檔案”按鈕，然後選擇在步驟1下載的檔案。
 3. 點選“上傳”按鈕，然後會彈出garmin的網頁。
