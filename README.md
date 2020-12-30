@@ -12,12 +12,14 @@ Download the latest release on right side of the page, then you can execute it o
 
 這是幫助自行車騎士將功率訓練課程自動在garmin connect建立的工具
 把課程從garmin connect再同步到edge碼表即可開始訓練
-520以後的馬表(例如:edge 520 plus、edge 820、edge 1030 plus ...)，都可使用功率訓練課程。
+520以後的馬表(例如:edge 520 plus、edge 820、edge 1030 plus ...)，都可使用功率訓練課程。<br/>
+下載網頁右側最新版的release，那麼你就可以在Windows 10上面使用它了(Windows 7 應該也沒問題)
 
 这是帮助自行车骑士将功率训练课程自动在garmin connect建立的工具
 把课程从garmin connect再同步到edge码表即可开始训练
-520以后的马表(例如:edge 520 plus、edge 820、edge 1030 plus ...)，都可使用功率训练课程。
-<br/><br/><br/>
+520以后的马表(例如:edge 520 plus、edge 820、edge 1030 plus ...)，都可使用功率训练课程。<br/>
+下载网页右侧最新版的release，那么你就可以在Windows 10上面使用它了(Windows 7 应该也没问题)
+<br/><br/>
 
 ## Basic usage/基本的な使い方/基本操作方式/基本操作方式
 1. click "example workout file" button to download sample workout file.
