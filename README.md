@@ -27,8 +27,9 @@ Download the latest release on right side of the page, then you can execute it o
 3. click "upload" button then Garmin Connect website page will pop up.
 4. input your Garmin id/password and click login, done. Robot will automatically finish all the things and create a workout for you.
 
-Example workout is a 50% FTP(5mins) => 90% FTP(2mins) => 60% FTP(12mins) => 80% FTP(1min) session.<br/>
-Edit example workout to satisfy your needs by using Excel or notepad.This tool is open source, so feel free to use it. Happy cycling :D
+Example workout is a session of "40% FTP(300 seconds) => 90% FTP(360 seconds) => repeat above steps 3 times".<br/>
+Edit .csv file simply by Excel or notepad to create your own workout.<br/>
+This tool is open source, feel free to use it. Happy cycling :D
 <br/>
 ps. CyclingWorkoutRobot readme google document detail version(well-illustrated and well-written)(English):<br/>
 https://docs.google.com/document/d/1dsmxPuhwef7LMSgwr1lcfuXUp12wXKc0YNznn8IJY0w/edit?usp=sharing
@@ -39,8 +40,8 @@ https://docs.google.com/document/d/1dsmxPuhwef7LMSgwr1lcfuXUp12wXKc0YNznn8IJY0w/
 3. 「アップロード」ボタンをクリックすると、Garmin ConnectのWebサイトページがポップアップ表示されます.
 4. 入力 Garmin id/password, 終わり.次に、このツールは自動的にワークアウトを作成します.
 
-サンプルファイルの内容は 50% FTP(5mins) => 90% FTP(2mins) => 60% FTP(12mins) => 80% FTP(1min)
-自分の workout を編集するのに必要なのはExcelだけです, このプログラムは open sourceです, だから安全に使用できます. ハッピーサイクリング :D
+サンプルファイルの内容は "40% FTP(300 seconds) => 90% FTP(360 seconds) => 上記の手順を3回繰り返します"
+Excelまたはnotepadで.csvファイルを編集して、独自のworkoutを作成します, この app は open sourceです, だから安全に使用できます. ハッピーサイクリング :D
 <br/>
 ps. CyclingWorkoutRobot readme google document 詳細バージョン（イラストが多く表現もすぐれており、とても理解し易い仕上がりとなっている）（日本語）
 <br/>
