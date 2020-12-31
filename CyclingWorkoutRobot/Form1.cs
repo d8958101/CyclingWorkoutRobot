@@ -45,7 +45,7 @@ namespace CyclingWorkoutRobot
 
         public static List<string> chromeArguments = new List<string>();
 
-        public string exampleWorkoutFileBase64 = "cG93ZXIgcGVyY2VudGFnZSBsb3dlciBib3VuZCxwb3dlciBwZXJjZW50YWdlIHVwcGVyIGJvdW5kLHRpbWUoc2Vjb25kKQ0KNTAsNTAsMzAwDQo5MCw5MCwxMjANCjYwLDYwLDcyMA0KODAsODAsNjANCg==";
+        public string exampleWorkoutFileBase64 = "cG93ZXIgcGVyY2VudGFnZSBsb3dlciBib3VuZCxwb3dlciBwZXJjZW50YWdlIHVwcGVyIGJvdW5kLHRpbWUoc2Vjb25kKQ0KNDAsNDAsMzAwDQo5MCw5MCwzNjANCjQwLDQwLDMwMA0KOTAsOTAsMzYwDQo0MCw0MCwzMDANCjkwLDkwLDM2MA0KNDAsNDAsMzAwDQo=";
 
 
         #endregion
@@ -1283,8 +1283,8 @@ namespace CyclingWorkoutRobot
             int localBaseX = 0;
             int localBaseY = 125;//good for width:400px
 
-
-            string[] lines = File.ReadAllLines(fileName);
+            string[] lines;
+            lines = ReadLines(fileName).ToArray();            
 
             //get total duration time to calculate blockWidthFactor
             int totalDurationTimeInSecond = 0;
@@ -1350,7 +1350,20 @@ namespace CyclingWorkoutRobot
             WorkoutNo++;
         }
 
-       
+
+        public static IEnumerable<string> ReadLines(string path)
+        {
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 0x1000, FileOptions.SequentialScan))
+            using (var sr = new StreamReader(fs, Encoding.UTF8))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    yield return line;
+                }
+            }
+        }
+
         private string GetIdPwdFromDB()
         {
             string idPwd = "";
