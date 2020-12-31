@@ -40,12 +40,11 @@ https://docs.google.com/document/d/1dsmxPuhwef7LMSgwr1lcfuXUp12wXKc0YNznn8IJY0w/
 3. 「アップロード」ボタンをクリックすると、Garmin ConnectのWebサイトページがポップアップ表示されます.
 4. 入力 Garmin id/password, 終わり.次に、このツールは自動的にワークアウトを作成します.
 
-サンプルファイルの内容は "40% FTP(300 seconds) => 90% FTP(360 seconds) => 上記の手順を3回繰り返します"
-Excelまたはnotepadで.csvファイルを編集して、独自のworkoutを作成します, この app は open sourceです, だから安全に使用できます. ハッピーサイクリング :D
+サンプルファイルの内容は "40% FTP(300 seconds) => 90% FTP(360 seconds) => 上記の手順を3回繰り返します".<br/>
+Excelまたはnotepadで.csvファイルを編集して、独自のworkoutを作成します, この app は open sourceです, だから安全に使用できます. ハッピーサイクリング :D<br/>
+ps. CyclingWorkoutRobot readme google document 詳細バージョン（イラストが多く表現もすぐれており、とても理解し易い仕上がりとなっている）（日本語）<br/>
+https://docs.google.com/document/d/1BW5I2gcnXJgKBD3QAfnVtJMxav9TJuhU0fpMtakt5ik/edit?usp=sharing
 <br/>
-ps. CyclingWorkoutRobot readme google document 詳細バージョン（イラストが多く表現もすぐれており、とても理解し易い仕上がりとなっている）（日本語）
-<br/>
-
 1. 點選“範例.csv檔”按鈕以下載範例課程。
 2. 點選“選擇.csv檔案”按鈕，然後選擇在步驟1下載的檔案。
 3. 點選“上傳”按鈕，然後會彈出garmin的網頁。
