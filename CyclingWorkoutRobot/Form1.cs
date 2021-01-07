@@ -776,7 +776,7 @@ namespace CyclingWorkoutRobot
                 //go to workout page
                 List<int> powerList = new List<int>();
                 List<int> durationList = new List<int>();
-                string[] lines = File.ReadAllLines(fullFileName);
+                string[] lines = ReadLines(fullFileName).ToArray();                
                 for (int i = 1; i < lines.Count(); i++)
                 {
                     //txtOutput.Text = txtOutput.Text + lines[i] + Environment.NewLine;
