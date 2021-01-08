@@ -45,13 +45,16 @@ Excelまたはnotepadで.csvファイルを編集して、独自のworkoutを作
 ps. CyclingWorkoutRobot readme google document 詳細バージョン（イラストが多く表現もすぐれており、とても理解し易い仕上がりとなっている）（日本語）<br/>
 https://docs.google.com/document/d/1BW5I2gcnXJgKBD3QAfnVtJMxav9TJuhU0fpMtakt5ik/edit?usp=sharing
 <br/>
+<br/>
 1. 點選“範例.csv檔”按鈕以下載範例課程。
 2. 點選“選擇.csv檔案”按鈕，然後選擇在步驟1下載的檔案。
 3. 點選“上傳”按鈕，然後會彈出garmin的網頁。
 4. 輸入您的Garmin ID /密碼，完成。
 
 範例課程是 50% FTP(5mins) => 90% FTP(2mins) => 60% FTP(12mins) => 80% FTP(1min)
-使用Excel即可編輯範例課程檔，可改為任何您想要的課程。這個工具是open source完全公開透明，因此您可放心使用，騎車快樂：D
+使用Excel即可編輯範例課程檔，可改為任何您想要的課程。這個工具是open source完全公開透明，因此您可放心使用，騎車快樂：D<br/>
+ps. CyclingWorkoutRobot的google document詳細版本(圖文)(繁中):<br/>
+https://docs.google.com/document/d/1tchXi3GjyJLAVCWFoOHO_r-Jw34amrDI52tr7COi6k0/edit?usp=sharing
 <br/>
 <br/>
 1. 点选“范例.csv档”按钮以下载范例课程。
