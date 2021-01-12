@@ -49,10 +49,10 @@ https://docs.google.com/document/d/1BW5I2gcnXJgKBD3QAfnVtJMxav9TJuhU0fpMtakt5ik/
 1. 點選“範例.csv檔”按鈕以下載範例課程。
 2. 點選“選擇.csv檔案”按鈕，然後選擇在步驟1下載的檔案。
 3. 點選“上傳”按鈕，然後會彈出garmin的網頁。
-4. 輸入您的Garmin ID /密碼，完成。
+4. 輸入您的Garmin 帳號/密碼以登入網頁，完成，此自動化工具將會自動為您建立好該課程。
 
-範例課程是 50% FTP(5mins) => 90% FTP(2mins) => 60% FTP(12mins) => 80% FTP(1min)
-使用Excel即可編輯範例課程檔，可改為任何您想要的課程。這個工具是open source完全公開透明，因此您可放心使用，騎車快樂：D<br/>
+範例課程的內容是 "40% FTP(300 秒) => 90% FTP(360 秒) => 重複以上步驟三次"，使用Excel或記事本即可編輯範例.csv檔<br/>
+，可改為任何您想要的課程。這個工具是open source完全公開透明，您可放心使用，騎車快樂：D<br/>
 ps. CyclingWorkoutRobot的google document詳細版本(圖文)(繁中):<br/>
 https://docs.google.com/document/d/1tchXi3GjyJLAVCWFoOHO_r-Jw34amrDI52tr7COi6k0/edit?usp=sharing
 <br/>
@@ -60,9 +60,9 @@ https://docs.google.com/document/d/1tchXi3GjyJLAVCWFoOHO_r-Jw34amrDI52tr7COi6k0/
 1. 点选“范例.csv档”按钮以下载范例课程。
 2. 点选“选择.csv档案”按钮，然后选择在步骤1下载的档案。
 3. 点选“上传”按钮，然后会弹出garmin的网页。
-4. 输入您的Garmin ID /密码，完成。
+4. 输入您的Garmin 帐号/密码以登入网页，完成，此自动化工具将会自动为您建立好该课程。
 
-范例课程是 50% FTP(5mins) => 90% FTP(2mins) => 60% FTP(12mins) => 80% FTP(1min)
-使用Excel即可编辑范例课程档，可改为任何您想要的课程。这个工具是open source完全公开透明，因此可放心使用，骑车快乐：D
+范例课程的内容是 "40% FTP(300 秒) => 90% FTP(360 秒) => 重複以上步驟三次"，使用Excel或記事本即可編輯範例.csv檔<br/>
+，可改为任何您想要的课程。这个工具是open source完全公开透明，您可放心使用，骑车快乐：D
 <br/>
 <br/>
