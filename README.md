@@ -63,6 +63,8 @@ https://docs.google.com/document/d/1tchXi3GjyJLAVCWFoOHO_r-Jw34amrDI52tr7COi6k0/
 4. 输入您的Garmin 帐号/密码以登入网页，完成，此自动化工具将会自动为您建立好该课程。
 
 范例课程的内容是 "40% FTP(300 秒) => 90% FTP(360 秒) => 重複以上步驟三次"，使用Excel或記事本即可編輯範例.csv檔<br/>
-，可改为任何您想要的课程。这个工具是open source完全公开透明，您可放心使用，骑车快乐：D
+，可改为任何您想要的课程。这个工具是open source完全公开透明，您可放心使用，骑车快乐：D<br/>
+ps. CyclingWorkoutRobot的google document详细版本(图文)(简中):<br/>
+https://docs.google.com/document/d/1MvmV23qnEPqikjtNyo4BkmUZXA1Dn3Zl2rFNjgKZA3c/edit?usp=sharing
 <br/>
 <br/>
