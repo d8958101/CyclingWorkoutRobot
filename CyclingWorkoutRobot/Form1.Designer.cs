@@ -56,28 +56,29 @@
             // 
             // txtFTP
             // 
-            this.txtFTP.Location = new System.Drawing.Point(141, 4);
+            this.txtFTP.Location = new System.Drawing.Point(212, 6);
+            this.txtFTP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFTP.Name = "txtFTP";
-            this.txtFTP.Size = new System.Drawing.Size(100, 22);
+            this.txtFTP.Size = new System.Drawing.Size(148, 29);
             this.txtFTP.TabIndex = 8;
             this.txtFTP.TextChanged += new System.EventHandler(this.txtFTP_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(105, 7);
+            this.label1.Location = new System.Drawing.Point(158, 10);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 12);
+            this.label1.Size = new System.Drawing.Size(41, 18);
             this.label1.TabIndex = 7;
             this.label1.Text = "FTP:";
             // 
             // chkRememberFTP
             // 
             this.chkRememberFTP.AutoSize = true;
-            this.chkRememberFTP.Location = new System.Drawing.Point(254, 7);
-            this.chkRememberFTP.Margin = new System.Windows.Forms.Padding(2);
+            this.chkRememberFTP.Location = new System.Drawing.Point(381, 10);
             this.chkRememberFTP.Name = "chkRememberFTP";
-            this.chkRememberFTP.Size = new System.Drawing.Size(93, 16);
+            this.chkRememberFTP.Size = new System.Drawing.Size(137, 22);
             this.chkRememberFTP.TabIndex = 9;
             this.chkRememberFTP.Text = "remember FTP";
             this.chkRememberFTP.UseVisualStyleBackColor = true;
@@ -87,27 +88,30 @@
             // 
             this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.cboLanguage.FormattingEnabled = true;
-            this.cboLanguage.Location = new System.Drawing.Point(711, 27);
+            this.cboLanguage.Location = new System.Drawing.Point(1110, 40);
+            this.cboLanguage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboLanguage.Name = "cboLanguage";
-            this.cboLanguage.Size = new System.Drawing.Size(121, 80);
+            this.cboLanguage.Size = new System.Drawing.Size(180, 118);
             this.cboLanguage.TabIndex = 10;
             this.cboLanguage.SelectedValueChanged += new System.EventHandler(this.cboLanguage_SelectedValueChanged);
             // 
             // lblLanguage
             // 
             this.lblLanguage.AutoSize = true;
-            this.lblLanguage.Location = new System.Drawing.Point(709, 11);
+            this.lblLanguage.Location = new System.Drawing.Point(1108, 16);
+            this.lblLanguage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLanguage.Name = "lblLanguage";
-            this.lblLanguage.Size = new System.Drawing.Size(54, 12);
+            this.lblLanguage.Size = new System.Drawing.Size(79, 18);
             this.lblLanguage.TabIndex = 11;
             this.lblLanguage.Text = "Language:\r\n";
             this.lblLanguage.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnOpenFile
             // 
-            this.btnOpenFile.Location = new System.Drawing.Point(9, 27);
+            this.btnOpenFile.Location = new System.Drawing.Point(14, 40);
+            this.btnOpenFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOpenFile.Name = "btnOpenFile";
-            this.btnOpenFile.Size = new System.Drawing.Size(127, 40);
+            this.btnOpenFile.Size = new System.Drawing.Size(190, 60);
             this.btnOpenFile.TabIndex = 12;
             this.btnOpenFile.Text = "select workout file";
             this.btnOpenFile.UseVisualStyleBackColor = true;
@@ -115,28 +119,31 @@
             // 
             // txtFileName
             // 
-            this.txtFileName.Location = new System.Drawing.Point(141, 27);
+            this.txtFileName.Location = new System.Drawing.Point(212, 40);
+            this.txtFileName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFileName.Multiline = true;
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtFileName.Size = new System.Drawing.Size(253, 70);
+            this.txtFileName.Size = new System.Drawing.Size(378, 103);
             this.txtFileName.TabIndex = 13;
             // 
             // gridWorkout
             // 
             this.gridWorkout.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridWorkout.Location = new System.Drawing.Point(9, 175);
+            this.gridWorkout.Location = new System.Drawing.Point(14, 262);
+            this.gridWorkout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridWorkout.Name = "gridWorkout";
             this.gridWorkout.RowHeadersWidth = 62;
             this.gridWorkout.RowTemplate.Height = 24;
-            this.gridWorkout.Size = new System.Drawing.Size(823, 345);
+            this.gridWorkout.Size = new System.Drawing.Size(1286, 518);
             this.gridWorkout.TabIndex = 14;
             // 
             // btnUpload
             // 
-            this.btnUpload.Location = new System.Drawing.Point(401, 27);
+            this.btnUpload.Location = new System.Drawing.Point(602, 40);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(85, 40);
+            this.btnUpload.Size = new System.Drawing.Size(128, 60);
             this.btnUpload.TabIndex = 15;
             this.btnUpload.Text = "Upload";
             this.btnUpload.UseVisualStyleBackColor = true;
@@ -145,9 +152,10 @@
             // chkShowAdv
             // 
             this.chkShowAdv.AutoSize = true;
-            this.chkShowAdv.Location = new System.Drawing.Point(142, 108);
+            this.chkShowAdv.Location = new System.Drawing.Point(213, 162);
+            this.chkShowAdv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkShowAdv.Name = "chkShowAdv";
-            this.chkShowAdv.Size = new System.Drawing.Size(139, 16);
+            this.chkShowAdv.Size = new System.Drawing.Size(202, 22);
             this.chkShowAdv.TabIndex = 16;
             this.chkShowAdv.Text = "Show Advanced Options";
             this.chkShowAdv.UseVisualStyleBackColor = true;
@@ -155,9 +163,10 @@
             // 
             // chkHideBrowser
             // 
-            this.chkHideBrowser.Location = new System.Drawing.Point(330, 103);
+            this.chkHideBrowser.Location = new System.Drawing.Point(495, 154);
+            this.chkHideBrowser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkHideBrowser.Name = "chkHideBrowser";
-            this.chkHideBrowser.Size = new System.Drawing.Size(147, 43);
+            this.chkHideBrowser.Size = new System.Drawing.Size(220, 64);
             this.chkHideBrowser.TabIndex = 17;
             this.chkHideBrowser.Text = "Hide Web Browser and remember id/password";
             this.chkHideBrowser.UseVisualStyleBackColor = true;
@@ -166,58 +175,66 @@
             // lblMsg
             // 
             this.lblMsg.AutoSize = true;
-            this.lblMsg.Location = new System.Drawing.Point(497, 11);
+            this.lblMsg.Location = new System.Drawing.Point(746, 16);
+            this.lblMsg.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMsg.Name = "lblMsg";
-            this.lblMsg.Size = new System.Drawing.Size(33, 12);
+            this.lblMsg.Size = new System.Drawing.Size(50, 18);
             this.lblMsg.TabIndex = 18;
             this.lblMsg.Text = "label2";
             // 
             // txtOutput
             // 
-            this.txtOutput.Location = new System.Drawing.Point(496, 32);
+            this.txtOutput.Location = new System.Drawing.Point(749, 40);
+            this.txtOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(193, 64);
+            this.txtOutput.ReadOnly = true;
+            this.txtOutput.Size = new System.Drawing.Size(288, 94);
             this.txtOutput.TabIndex = 19;
             // 
             // txtLoginId
             // 
-            this.txtLoginId.Location = new System.Drawing.Point(561, 111);
+            this.txtLoginId.Location = new System.Drawing.Point(842, 166);
+            this.txtLoginId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtLoginId.Name = "txtLoginId";
-            this.txtLoginId.Size = new System.Drawing.Size(83, 22);
+            this.txtLoginId.Size = new System.Drawing.Size(122, 29);
             this.txtLoginId.TabIndex = 20;
             // 
             // lblIdPwd
             // 
             this.lblIdPwd.AutoSize = true;
-            this.lblIdPwd.Location = new System.Drawing.Point(497, 116);
+            this.lblIdPwd.Location = new System.Drawing.Point(746, 174);
+            this.lblIdPwd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIdPwd.Name = "lblIdPwd";
-            this.lblIdPwd.Size = new System.Drawing.Size(64, 12);
+            this.lblIdPwd.Size = new System.Drawing.Size(97, 18);
             this.lblIdPwd.TabIndex = 21;
             this.lblIdPwd.Text = "Id/Password:";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(663, 111);
+            this.txtPassword.Location = new System.Drawing.Point(994, 166);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(83, 22);
+            this.txtPassword.Size = new System.Drawing.Size(122, 29);
             this.txtPassword.TabIndex = 22;
             // 
             // lblSlash
             // 
             this.lblSlash.AutoSize = true;
-            this.lblSlash.Location = new System.Drawing.Point(649, 114);
+            this.lblSlash.Location = new System.Drawing.Point(974, 171);
+            this.lblSlash.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSlash.Name = "lblSlash";
-            this.lblSlash.Size = new System.Drawing.Size(8, 12);
+            this.lblSlash.Size = new System.Drawing.Size(13, 18);
             this.lblSlash.TabIndex = 23;
             this.lblSlash.Text = "/";
             // 
             // btnSaveIdPwd
             // 
-            this.btnSaveIdPwd.Location = new System.Drawing.Point(757, 110);
+            this.btnSaveIdPwd.Location = new System.Drawing.Point(1136, 165);
+            this.btnSaveIdPwd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSaveIdPwd.Name = "btnSaveIdPwd";
-            this.btnSaveIdPwd.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveIdPwd.Size = new System.Drawing.Size(112, 34);
             this.btnSaveIdPwd.TabIndex = 24;
             this.btnSaveIdPwd.Text = "save";
             this.btnSaveIdPwd.UseVisualStyleBackColor = true;
@@ -226,9 +243,10 @@
             // chkRememberIdPwd
             // 
             this.chkRememberIdPwd.AutoSize = true;
-            this.chkRememberIdPwd.Location = new System.Drawing.Point(330, 152);
+            this.chkRememberIdPwd.Location = new System.Drawing.Point(495, 228);
+            this.chkRememberIdPwd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkRememberIdPwd.Name = "chkRememberIdPwd";
-            this.chkRememberIdPwd.Size = new System.Drawing.Size(156, 16);
+            this.chkRememberIdPwd.Size = new System.Drawing.Size(231, 22);
             this.chkRememberIdPwd.TabIndex = 25;
             this.chkRememberIdPwd.Text = "Only remember Id/Password";
             this.chkRememberIdPwd.UseVisualStyleBackColor = true;
@@ -244,9 +262,10 @@
             // 
             // btnExampleWorkoutFileDownload
             // 
-            this.btnExampleWorkoutFileDownload.Location = new System.Drawing.Point(9, 74);
+            this.btnExampleWorkoutFileDownload.Location = new System.Drawing.Point(14, 111);
+            this.btnExampleWorkoutFileDownload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExampleWorkoutFileDownload.Name = "btnExampleWorkoutFileDownload";
-            this.btnExampleWorkoutFileDownload.Size = new System.Drawing.Size(127, 23);
+            this.btnExampleWorkoutFileDownload.Size = new System.Drawing.Size(190, 34);
             this.btnExampleWorkoutFileDownload.TabIndex = 26;
             this.btnExampleWorkoutFileDownload.Text = "example workout file";
             this.btnExampleWorkoutFileDownload.UseVisualStyleBackColor = true;
@@ -254,9 +273,10 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 538);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1413, 807);
             this.Controls.Add(this.btnExampleWorkoutFileDownload);
             this.Controls.Add(this.chkRememberIdPwd);
             this.Controls.Add(this.btnSaveIdPwd);
@@ -277,7 +297,6 @@
             this.Controls.Add(this.chkRememberFTP);
             this.Controls.Add(this.txtFTP);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "CyclingWorkoutRobot(For garmin connect)";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);

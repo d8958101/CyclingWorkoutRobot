@@ -102,7 +102,7 @@ namespace CyclingWorkoutRobot
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             KillChromeDriver("chrome");
-          
+
         }
 
 
@@ -119,7 +119,7 @@ namespace CyclingWorkoutRobot
                 if (Common.IsNumeric(txtFTP.Text) == true)
                 {
                     //update ftp setting in db
-                    dbRepo.InserUpdateUserFTP(userId, txtFTP.Text);                    
+                    dbRepo.InserUpdateUserFTP(userId, txtFTP.Text);
                 }
 
 
@@ -159,7 +159,7 @@ namespace CyclingWorkoutRobot
             //SetMultiLanguage();
             LoadDefaultLanguageFromDB();
             if (pageLoadING == false)
-            {               
+            {
                 txtOutput.Text = "Language changed, please reopen app!".ToDefaultLanguage();
             }
         }
@@ -246,7 +246,7 @@ namespace CyclingWorkoutRobot
                 MessageBox.Show("Robot is still busy, Please wait.".ToDefaultLanguage());
                 return;
             }
-           
+
         }
 
 
@@ -287,7 +287,7 @@ namespace CyclingWorkoutRobot
                     }
 
 
-                   
+
 
                     MessageBox.Show("Hide web browser option will login automatically.".ToDefaultLanguage()
                    + Environment.NewLine
@@ -296,11 +296,11 @@ namespace CyclingWorkoutRobot
 
                 }
                 else
-                {                   
+                {
 
                     //if unchecking (hideBrowser checkbox) and (only remember id/pwd checkbox)
                     //at the same time, remove id/pwd from local db
-                    if(chkHideBrowser.Checked == false && chkRememberIdPwd.Checked == false)
+                    if (chkHideBrowser.Checked == false && chkRememberIdPwd.Checked == false)
                     {
                         dbRepo.DeleteUserIdPwdFromDb();
                         txtLoginId.Text = "";
@@ -389,7 +389,7 @@ namespace CyclingWorkoutRobot
                     txtOutput.AppendText(Environment.NewLine + outputText);
                 }
 
-                
+
                 outputText = "";
             }
 
@@ -408,7 +408,7 @@ namespace CyclingWorkoutRobot
             {
                 Byte[] bytes = Convert.FromBase64String(exampleWorkoutFileBase64);
                 File.WriteAllBytes(savefile.FileName, bytes);
-            }          
+            }
         }
 
         #endregion
@@ -418,7 +418,7 @@ namespace CyclingWorkoutRobot
         private void bwUpload_DoWork(object sender, DoWorkEventArgs e)
         {
 
-            string regPattern = @"" ;
+            string regPattern = @"";
             AppendOutput("Robot starts working.");
             AppendOutput("Checking chromedriver exists or not.");
             if (Process.GetProcessesByName("chromedriver").Count() == 0)
@@ -435,19 +435,19 @@ namespace CyclingWorkoutRobot
                     chromeBrowserOptions.AddArgument("headless");
                     chromeArguments.Add("headless");
                 }
-              
-                driver = new ChromeDriver(driverService, chromeBrowserOptions);                
+
+                driver = new ChromeDriver(driverService, chromeBrowserOptions);
                 LoadCookieFromFile();
                 AppendOutput("Checking login status.");
                 regPattern = @"main-nav-group dashboards";
                 bool isLoginSuccess = WaitForSomething(regPattern, 5);
-                
-                if(isLoginSuccess == false)
+
+                if (isLoginSuccess == false)
                 {
                     AppendOutput("Preparing to login.");
                     isLoginSuccess = Login();
                 }
-               
+
                 if (isLoginSuccess == true)
                 {
                     AppendOutput("Login finished.");
@@ -480,18 +480,18 @@ namespace CyclingWorkoutRobot
                     AppendOutput("Error occur to web browser. Re-launch browser.");
                     isLoginSuccess = false;
                     KillChromeDriver("chrome");
-                    
+
                     ChromeOptions chromeBrowserOptions = new ChromeOptions();
                     //var driverService = ChromeDriverService.CreateDefaultService(@"ChromeDriver");
                     var driverService = ChromeDriverService.CreateDefaultService();
                     driverService.HideCommandPromptWindow = true;
                     chromeBrowserOptions.AddArguments(chromeArguments);//save pc resource
 
-                    driver = new ChromeDriver(driverService, chromeBrowserOptions);                   
+                    driver = new ChromeDriver(driverService, chromeBrowserOptions);
                     LoadCookieFromFile();
                     isLoginSuccess = WaitForSomething(regPattern, 5);
                 }
-                
+
                 if (isLoginSuccess == true)
                 {
                     //do nothing
@@ -527,7 +527,7 @@ namespace CyclingWorkoutRobot
                 string rowFullFilePath = (string)row.Cells[fullFilePath].Value;
                 string rowUploadFinished = (string)row.Cells[uploadFinished.ToDefaultLanguage()].Value;
                 string rowResult;
-               
+
                 if (rowUploadFinished == "Yes".ToDefaultLanguage())
                 {
                     continue;
@@ -561,12 +561,12 @@ namespace CyclingWorkoutRobot
 
         private bool Login()
         {
-            
+
             //bool loginSuccess = true;   
             string regPattern = @"";
             string msg = @"";
             driver.Navigate().GoToUrl("https://connect.garmin.com/");
-            
+
             //prevent RWD to hide element
 
             driver.Manage().Window.Maximize();
@@ -584,7 +584,7 @@ namespace CyclingWorkoutRobot
             {
                 AppendOutput("Error occur while clicking agree cookies button");
             }
-           
+
 
             //check if login success status
             //if dashboard exists, then you are loginned
@@ -633,7 +633,7 @@ namespace CyclingWorkoutRobot
             string idPwd = GetIdPwdFromDB();
             bool isHide = dbRepo.GetHideBrowserOption();
             bool isRemember = dbRepo.GetRememberIdPwdOption();
-            bool userMaullyLogin = false;   
+            bool userMaullyLogin = false;
             if (idPwd != "" && (isHide == true || isRemember == true))
             {
                 AppendOutput("Auto login confirmed.");
@@ -667,17 +667,17 @@ namespace CyclingWorkoutRobot
                     return false;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
+
             }
-            
+
 
             //wait for dashboard page load complete  
             AppendOutput("Wait for dashboard.");
             regPattern = @"main-nav-group dashboards";
             Int32 userWaitTime;
-            if(userMaullyLogin == true)
+            if (userMaullyLogin == true)
             {
                 userWaitTime = 86400;
             }
@@ -753,7 +753,7 @@ namespace CyclingWorkoutRobot
                 AppendOutput("Select cycling workout.");
                 regPattern = @"select-workout";
 
-                if (WaitForSomething(regPattern, 5) == false)
+                if (WaitForSomething(regPattern) == false)
                 {
                     AppendOutput("Select cycling workout fail.");
                     return false;
@@ -776,7 +776,7 @@ namespace CyclingWorkoutRobot
                 //go to workout page
                 List<int> powerList = new List<int>();
                 List<int> durationList = new List<int>();
-                string[] lines = ReadLines(fullFileName).ToArray();                
+                string[] lines = ReadLines(fullFileName).ToArray();
                 for (int i = 1; i < lines.Count(); i++)
                 {
                     //txtOutput.Text = txtOutput.Text + lines[i] + Environment.NewLine;
@@ -942,6 +942,10 @@ namespace CyclingWorkoutRobot
         private static string chosenToUpload = "ChosenToUpload";
         private string workoutName = "WorkoutName";
         private string workoutLength = "WorkoutLength";
+
+        private string workoutTSS = "TSS";
+        private string workoutIF = "IF";
+
         private string workoutCurve = "WorkoutCurve";
         private string fullFilePath = "FullFilePath";
         private string uploadFinished = "UploadFinished";
@@ -949,11 +953,16 @@ namespace CyclingWorkoutRobot
 
         private void CreateDtColumns()
         {
-           
+
             dtWorkout.Columns.Add(no, typeof(int));
             dtWorkout.Columns.Add(chosenToUpload, typeof(bool));
             dtWorkout.Columns.Add(workoutName, typeof(string));
             dtWorkout.Columns.Add(workoutLength, typeof(string));
+
+            dtWorkout.Columns.Add(workoutTSS, typeof(string));
+            dtWorkout.Columns.Add(workoutIF, typeof(string));
+
+
             dtWorkout.Columns.Add(workoutCurve, typeof(byte[]));
             dtWorkout.Columns.Add(fullFilePath, typeof(string));
             dtWorkout.Columns.Add(uploadFinished, typeof(string));
@@ -988,6 +997,7 @@ namespace CyclingWorkoutRobot
                 {
                     DataPropertyName = workoutName,
                     Name = workoutName.ToDefaultLanguage(),
+                    Width = 90,
                 });
 
                 //string workoutLength = "WorkoutLength";
@@ -995,9 +1005,29 @@ namespace CyclingWorkoutRobot
                 {
                     DataPropertyName = workoutLength,
                     Name = workoutLength.ToDefaultLanguage(),
-
+                    Width = 85,
                 });
                 this.gridWorkout.Columns[workoutLength.ToDefaultLanguage()].DefaultCellStyle.Alignment =
+                    DataGridViewContentAlignment.MiddleCenter;
+
+                //TSS
+                gridWorkout.Columns.Add(new DataGridViewTextBoxColumn()
+                {
+                    DataPropertyName = workoutTSS,
+                    Name = workoutTSS,
+                    Width = 50,
+                });
+                this.gridWorkout.Columns[workoutTSS].DefaultCellStyle.Alignment =
+                    DataGridViewContentAlignment.MiddleCenter;
+
+                //IF
+                gridWorkout.Columns.Add(new DataGridViewTextBoxColumn()
+                {
+                    DataPropertyName = workoutIF,
+                    Name = workoutIF,
+                    Width = 50,
+                });
+                this.gridWorkout.Columns[workoutIF].DefaultCellStyle.Alignment =
                     DataGridViewContentAlignment.MiddleCenter;
 
                 //string workoutCurve = "WorkoutCurve";
@@ -1015,7 +1045,7 @@ namespace CyclingWorkoutRobot
                 {
                     DataPropertyName = fullFilePath,
                     Name = fullFilePath,
-
+                    Width = 100,
 
                 });
                 this.gridWorkout.Columns[fullFilePath].Visible = false;
@@ -1025,13 +1055,13 @@ namespace CyclingWorkoutRobot
                 {
                     DataPropertyName = uploadFinished,
                     Name = uploadFinished.ToDefaultLanguage(),
-                    Width = 140,
+                    Width = 100,
 
                 });
                 this.gridWorkout.Columns[uploadFinished.ToDefaultLanguage()].DefaultCellStyle.Alignment =
                           DataGridViewContentAlignment.MiddleCenter;
 
-               
+
 
             }
         }
@@ -1094,7 +1124,7 @@ namespace CyclingWorkoutRobot
                 }
             }
         }
-       
+
 
         #endregion
 
@@ -1118,7 +1148,7 @@ namespace CyclingWorkoutRobot
         {
             using (mydbEntities db = new mydbEntities())
             {
-              
+
                 //set text of language setup label
                 var languageLbl = dbRepo.GetTranslateObj("Language");
                 //set text of remember FTP checkbox
@@ -1136,7 +1166,7 @@ namespace CyclingWorkoutRobot
                 //save button
                 var saveLoginPwdButton = dbRepo.GetTranslateObj("Save");
                 //example wokrout file button
-                var exampleWorkoutFileButton = dbRepo.GetTranslateObj("example workout file");               
+                var exampleWorkoutFileButton = dbRepo.GetTranslateObj("example workout file");
 
                 if (defaultLanguage == LanguageOption.English)
                 {
@@ -1187,7 +1217,7 @@ namespace CyclingWorkoutRobot
                     btnExampleWorkoutFileDownload.Text = exampleWorkoutFileButton.cht;
                 }
                 lblLanguage.Text = lblLanguage.Text + ":";
-               
+
 
             }
 
@@ -1263,7 +1293,7 @@ namespace CyclingWorkoutRobot
 
         private void InsertWorkoutDataToDataTable(string fileName)
         {
-            //WorkoutData data = new WorkoutData();
+            //draw workout curve
             List<int> powerList = new List<int>();
             List<int> durationList = new List<int>();
             int blockWidthFactor;
@@ -1284,7 +1314,7 @@ namespace CyclingWorkoutRobot
             int localBaseY = 125;//good for width:400px
 
             string[] lines;
-            lines = ReadLines(fileName).ToArray();            
+            lines = ReadLines(fileName).ToArray();
 
             //get total duration time to calculate blockWidthFactor
             int totalDurationTimeInSecond = 0;
@@ -1336,13 +1366,20 @@ namespace CyclingWorkoutRobot
                 originalBmp.Height * bmpFinalWidth / bmpOriginalWidth));
 
             DataRow dr = dtWorkout.NewRow();
-            TimeSpan totalTime = TimeSpan.FromSeconds(durationList.Sum());
-            string strTotalTime = totalTime.ToString(@"hh\hmm\mss\s");
+     
+            TimeSpan totalTime = GetTotalTime(fileName);
+            double workoutNP = GetNP(fileName);
+            double workoutIF = GetWorkoutIF(workoutNP);
+            double workoutTSS = GetWorkoutTSS(workoutNP, totalTime.TotalSeconds, workoutIF, Convert.ToInt32(txtFTP.Text));
 
             dr["No"] = WorkoutNo;
             dr["ChosenToUpload"] = true;
             dr["WorkoutName"] = Path.GetFileNameWithoutExtension(fileName);
-            dr["WorkoutLength"] = strTotalTime;
+            dr["WorkoutLength"] = totalTime.ToString(@"hh\hmm\mss\s");
+
+            dr["TSS"] = workoutTSS.ToString();
+            dr["IF"] = workoutIF.ToString();
+
             dr["WorkoutCurve"] = BmpToBytes(resized);
             dr["FullFilePath"] = fileName;
             dr["UploadFinished"] = "No".ToDefaultLanguage();
@@ -1350,6 +1387,156 @@ namespace CyclingWorkoutRobot
             WorkoutNo++;
         }
 
+        #region Calculate NP
+
+        private double GetNP(string fileName)
+        {
+            WattInfo[] infoArray = new WattInfo[400000];
+
+            //init infoArray
+            List<WattInfo> tempList = new List<WattInfo>();
+            for (int i = 0; i < infoArray.Length; i++)
+            {
+                tempList.Add(new WattInfo()
+                {
+                    watt = 0,
+                    rollingAverage = 0,
+                    rollingAvgPowered = 0,
+                    avgPoweredValues = 0,
+                    NP = 0,
+                });
+
+            }
+            infoArray = tempList.ToArray();
+
+            string[] lines;
+            lines = ReadLines(fileName).ToArray();
+
+            int arrIndex = 0;
+            for (int i = 1; i < lines.Count(); i++)
+            {
+                int power_percentage_lower_bound = Convert.ToInt16(lines[i].Split(',')[0]);
+                int power_percentage_upper_bound = Convert.ToInt16(lines[i].Split(',')[1]);
+                int power_percentage_average = (power_percentage_lower_bound + power_percentage_upper_bound) / 2;
+                int durationTimeInSecond = Convert.ToInt16(lines[i].Split(',')[2]);
+
+                for (int j = 0; j < durationTimeInSecond; j++)
+                {
+                    //watt of the moment		
+                    infoArray[arrIndex].watt = Convert.ToDouble(txtFTP.Text) * power_percentage_average / 100;
+
+
+                    if (arrIndex >= 30)
+                    {
+                        infoArray[arrIndex].rollingAverage = GetRollingAverage(arrIndex, ref infoArray);
+
+                        infoArray[arrIndex].rollingAvgPowered = Math.Pow(infoArray[arrIndex].rollingAverage, 4);
+
+                        infoArray[arrIndex].avgPoweredValues = GetAvgPoweredValues(arrIndex, ref infoArray);
+
+                        infoArray[arrIndex].NP = Math.Sqrt(Math.Sqrt(infoArray[arrIndex].avgPoweredValues));
+                    }
+
+                    arrIndex++;
+                }
+            }
+
+            return infoArray[arrIndex - 1].NP;
+        }
+
+        private double GetRollingAverage(int currentArrIndex, ref WattInfo[] infoArray)
+        {
+            double result = 0;
+
+            for (int i = currentArrIndex - 30; i < currentArrIndex; i++)
+            {
+                result = result + infoArray[i].watt;
+            }
+
+            result = result / 30;
+
+
+            return result;
+
+        }
+
+        private static double GetAvgPoweredValues(int currentArrIndex, ref WattInfo[] infoArray)
+        {
+            double result = 0;
+
+            for (int i = 30; i <= currentArrIndex; i++)
+            {
+                result = result + infoArray[i].rollingAvgPowered;
+            }
+
+            result = result / (currentArrIndex - 30 + 1);
+
+
+            return result;
+
+        }
+
+        public class WattInfo
+        {
+            public double watt { get; set; }//power at the moment
+
+            public double rollingAverage { get; set; }//avg power of previous 30 seconds
+
+            public double rollingAvgPowered { get; set; }//4 th power of rollingAverage
+
+            public double avgPoweredValues { get; set; }//average of rollingAvgPowered
+
+            public double NP { get; set; }//sqrt of sqrt of avgPoweredValues = NP
+
+
+
+        }
+
+        #endregion
+
+        #region Calculate Total time
+
+        private TimeSpan GetTotalTime(string fileName)
+        {           
+            List<int> durationList = new List<int>();     
+
+            string[] lines;
+            lines = ReadLines(fileName).ToArray();
+
+            //get total duration time to calculate blockWidthFactor
+            int totalDurationTimeInSecond = 0;
+            for (int i = 1; i < lines.Count(); i++)
+            {
+                int durationTimeInSecond = Convert.ToInt16(lines[i].Split(',')[2]);
+                totalDurationTimeInSecond = totalDurationTimeInSecond + durationTimeInSecond;
+            }
+
+            for (int i = 1; i < lines.Count(); i++)
+            {              
+                int durationTimeInSecond = Convert.ToInt16(lines[i].Split(',')[2]);              
+                durationList.Add(durationTimeInSecond);                               
+            }
+            TimeSpan totalTime = TimeSpan.FromSeconds(durationList.Sum());
+            //string strTotalTime = totalTime.ToString(@"hh\hmm\mss\s");
+           
+            return totalTime;
+        }
+
+        #endregion
+
+        private double GetWorkoutTSS(double workoutNP, double totalSeconds, double workoutIF, int ftp)
+        {
+            double workoutTSS;
+            workoutTSS = (totalSeconds * workoutNP * workoutIF) / (ftp * 3600) * 100;
+            workoutTSS = Math.Floor(workoutTSS);
+
+            return workoutTSS;
+        }
+
+        private double GetWorkoutIF(double workoutNP)
+        {
+            return Math.Round(workoutNP / Convert.ToDouble(txtFTP.Text), 2) ;
+        }
 
         public static IEnumerable<string> ReadLines(string path)
         {
@@ -1371,7 +1558,7 @@ namespace CyclingWorkoutRobot
             {
                 var idPwdObj = db.tdcode.Where(t => t.code_id == "UserLoginIdPwd" && t.code_type == "AutoLogin").FirstOrDefault();
                 if (idPwdObj != null)
-                {                   
+                {
                     idPwd = Common.CryptDecryptString(idPwdObj.code_value);
                 }
 
@@ -1390,13 +1577,13 @@ namespace CyclingWorkoutRobot
         // Create a file to store Login Information 
         string cookieFileName = "Cookiefile.txt";
         private void LoadCookieFromFile()
-        {            
-            if(File.Exists(cookieFileName) == true)
+        {
+            if (File.Exists(cookieFileName) == true)
             {
                 driver.Manage().Cookies.DeleteAllCookies();
                 driver.Navigate().GoToUrl("https://connect.garmin.com/");
                 string[] lines = System.IO.File.ReadAllLines(cookieFileName);
-                foreach(var line in lines)
+                foreach (var line in lines)
                 {
                     string[] cookieInfoArr = line.Split(';');
                     string name = cookieInfoArr[0];
@@ -1405,15 +1592,15 @@ namespace CyclingWorkoutRobot
                     string path = cookieInfoArr[3];
                     string expiry = cookieInfoArr[4];
                     DateTime? expiryVarNullable = null;
-                    if(!string.IsNullOrEmpty(expiry))
+                    if (!string.IsNullOrEmpty(expiry))
                     {
                         DateTime expiryVar = DateTime.ParseExact(expiry,
                                                    expiryDateTimeFormat,
                                                    System.Globalization.CultureInfo.InvariantCulture);
                         expiryVarNullable = expiryVar;
                     }
-                   
-                    
+
+
                     string secure = cookieInfoArr[5];
                     Cookie ck = new Cookie(name, value, path, expiryVarNullable);
                     //ck.Domain = domain;
@@ -1428,16 +1615,16 @@ namespace CyclingWorkoutRobot
         }
 
         private void SaveNewCookie()
-        {            
+        {
             try
             {
                 File.Delete(cookieFileName);
-                using (System.IO.StreamWriter file =new System.IO.StreamWriter(cookieFileName))
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(cookieFileName))
                 {
-                    foreach(var ck in driver.Manage().Cookies.AllCookies)
+                    foreach (var ck in driver.Manage().Cookies.AllCookies)
                     {
                         string expiryString = string.Empty;
-                        if(ck.Expiry == null)
+                        if (ck.Expiry == null)
                         {
                             // do nothing
                         }
@@ -1447,22 +1634,22 @@ namespace CyclingWorkoutRobot
                             expiryString = tempExpriry.ToString(expiryDateTimeFormat);
                         }
 
-                        string line = ck.Name + ";" + ck.Value + ";" + ck.Domain + ";" + ck.Path + ";" 
+                        string line = ck.Name + ";" + ck.Value + ";" + ck.Domain + ";" + ck.Path + ";"
                             + expiryString + ";" + ck.Secure.ToString();
                         file.WriteLine(line);
                     }
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 AppendOutput("SaveNewCookie() fail:" + ex.Message);
             }
-            
+
         }
 
         #endregion
 
-      
+
     }
 }
