@@ -1292,6 +1292,35 @@ namespace CyclingWorkoutRobot
         }
 
         private void InsertWorkoutDataToDataTable(string fileName)
+        {            
+            DataRow dr = dtWorkout.NewRow();
+     
+            TimeSpan totalTime = GetTotalTime(fileName);
+            Bitmap workoutCurve = GetWorkoutCurve(fileName);
+            double workoutNP = GetNP(fileName);
+            double workoutIF = GetWorkoutIF(workoutNP);
+            double workoutTSS = GetWorkoutTSS(workoutNP, totalTime.TotalSeconds, workoutIF, Convert.ToInt32(txtFTP.Text));
+
+            dr["No"] = WorkoutNo;
+            dr["ChosenToUpload"] = true;
+            dr["WorkoutName"] = Path.GetFileNameWithoutExtension(fileName);
+            dr["WorkoutLength"] = totalTime.ToString(@"hh\hmm\mss\s");
+
+            dr["TSS"] = workoutTSS.ToString();
+            dr["IF"] = workoutIF.ToString();
+
+            dr["WorkoutCurve"] = BmpToBytes(workoutCurve);
+            //dr["WorkoutCurve"] = BmpToBytes(originalBmp);
+
+            dr["FullFilePath"] = fileName;
+            dr["UploadFinished"] = "No".ToDefaultLanguage();
+            dtWorkout.Rows.Add(dr);
+            WorkoutNo++;
+        }
+
+        #region Draw Workout curve
+
+        private Bitmap GetWorkoutCurve(string fileName)
         {
             //draw workout curve
             List<int> powerList = new List<int>();
@@ -1315,7 +1344,7 @@ namespace CyclingWorkoutRobot
 
             string[] lines;
             lines = ReadLines(fileName).ToArray();
-
+           
             //get total duration time to calculate blockWidthFactor
             int totalDurationTimeInSecond = 0;
             for (int i = 1; i < lines.Count(); i++)
@@ -1324,6 +1353,16 @@ namespace CyclingWorkoutRobot
                 totalDurationTimeInSecond = totalDurationTimeInSecond + durationTimeInSecond;
 
             }
+
+            // if totalDurationTimeInSecond < half hour ==> add recovery interval at the end of workout
+            if(totalDurationTimeInSecond < 1800)
+            {
+                List<string> tempList = lines.ToList();
+                tempList.Add("1,10," + (1800 - totalDurationTimeInSecond).ToString());
+                lines = tempList.ToArray();
+                totalDurationTimeInSecond = 1800;
+            }
+            
             blockWidthFactor = totalDurationTimeInSecond / denoOfDuration;
 
 
@@ -1361,31 +1400,14 @@ namespace CyclingWorkoutRobot
 
             }
 
-            originalBmpGraphics.FillRectangle(Brushes.Green, localBaseX, 24, bmpOriginalWidth, 2);//寬度400適用           
+            originalBmpGraphics.FillRectangle(Brushes.Green, localBaseX, 24, bmpOriginalWidth, 2);//寬度400適用              
             Bitmap resized = new Bitmap(originalBmp, new Size(originalBmp.Width * bmpFinalWidth / bmpOriginalWidth,
                 originalBmp.Height * bmpFinalWidth / bmpOriginalWidth));
 
-            DataRow dr = dtWorkout.NewRow();
-     
-            TimeSpan totalTime = GetTotalTime(fileName);
-            double workoutNP = GetNP(fileName);
-            double workoutIF = GetWorkoutIF(workoutNP);
-            double workoutTSS = GetWorkoutTSS(workoutNP, totalTime.TotalSeconds, workoutIF, Convert.ToInt32(txtFTP.Text));
-
-            dr["No"] = WorkoutNo;
-            dr["ChosenToUpload"] = true;
-            dr["WorkoutName"] = Path.GetFileNameWithoutExtension(fileName);
-            dr["WorkoutLength"] = totalTime.ToString(@"hh\hmm\mss\s");
-
-            dr["TSS"] = workoutTSS.ToString();
-            dr["IF"] = workoutIF.ToString();
-
-            dr["WorkoutCurve"] = BmpToBytes(resized);
-            dr["FullFilePath"] = fileName;
-            dr["UploadFinished"] = "No".ToDefaultLanguage();
-            dtWorkout.Rows.Add(dr);
-            WorkoutNo++;
+            return resized;
         }
+
+        #endregion
 
         #region Calculate NP
 
