@@ -783,6 +783,14 @@ namespace CyclingWorkoutRobot
                     AppendOutput(lines[i] + " is processing.");
                     int power_percentage_lower_bound = Convert.ToInt16(lines[i].Split(',')[0]);
                     int power_percentage_upper_bound = Convert.ToInt16(lines[i].Split(',')[1]);
+
+                    if(power_percentage_lower_bound > power_percentage_upper_bound)
+                    {
+                        int tempPower = power_percentage_lower_bound;
+                        power_percentage_lower_bound = power_percentage_upper_bound;
+                        power_percentage_upper_bound = tempPower;
+                    }
+
                     int power_percentage_average = (power_percentage_lower_bound + power_percentage_upper_bound) / 2;
                     int durationTimeInSecond = Convert.ToInt16(lines[i].Split(',')[2]);
 
@@ -1371,6 +1379,14 @@ namespace CyclingWorkoutRobot
 
                 int power_percentage_lower_bound = Convert.ToInt16(lines[i].Split(',')[0]);
                 int power_percentage_upper_bound = Convert.ToInt16(lines[i].Split(',')[1]);
+
+                if (power_percentage_lower_bound > power_percentage_upper_bound)
+                {
+                    int tempPower = power_percentage_lower_bound;
+                    power_percentage_lower_bound = power_percentage_upper_bound;
+                    power_percentage_upper_bound = tempPower;
+                }
+
                 int power_percentage_average = (power_percentage_lower_bound + power_percentage_upper_bound) / 2;
                 int durationTimeInSecond = Convert.ToInt16(lines[i].Split(',')[2]);
 
@@ -1439,6 +1455,14 @@ namespace CyclingWorkoutRobot
             {
                 int power_percentage_lower_bound = Convert.ToInt16(lines[i].Split(',')[0]);
                 int power_percentage_upper_bound = Convert.ToInt16(lines[i].Split(',')[1]);
+
+                if (power_percentage_lower_bound > power_percentage_upper_bound)
+                {
+                    int tempPower = power_percentage_lower_bound;
+                    power_percentage_lower_bound = power_percentage_upper_bound;
+                    power_percentage_upper_bound = tempPower;
+                }
+
                 int power_percentage_average = (power_percentage_lower_bound + power_percentage_upper_bound) / 2;
                 int durationTimeInSecond = Convert.ToInt16(lines[i].Split(',')[2]);
 
