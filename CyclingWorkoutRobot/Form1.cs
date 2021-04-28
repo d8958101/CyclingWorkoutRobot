@@ -574,16 +574,18 @@ namespace CyclingWorkoutRobot
             //agree cookies
             regPattern = @"truste-consent-button";
             WaitForSomething(regPattern);
-            try
-            {
-                IWebElement agreeBtn = driver.FindElement(By.CssSelector("button[id='truste-consent-button']"));
-                agreeBtn.Click();
-                AppendOutput("Click truste-consent-button");
-            }
-            catch (Exception ex)
-            {
-                AppendOutput("Error occur while clicking agree cookies button");
-            }
+
+            ClickAgreeButton();
+            //try
+            //{
+            //    IWebElement agreeBtn = driver.FindElement(By.CssSelector("button[id='truste-consent-button']"));
+            //    agreeBtn.Click();
+            //    AppendOutput("Click truste-consent-button");
+            //}
+            //catch (Exception ex)
+            //{
+            //    AppendOutput("Error occur while clicking agree cookies button");
+            //}
 
 
             //check if login success status
@@ -772,6 +774,18 @@ namespace CyclingWorkoutRobot
                 ((IJavaScriptExecutor)driver).ExecuteScript(@"document.querySelector(""div.step-delete a"").click()");
                 ((IJavaScriptExecutor)driver).ExecuteScript(@"document.querySelector(""div.step-delete a"").click()");
 
+                ClickAgreeButton();
+                //try
+                //{
+                //    IWebElement agreeBtn = driver.FindElement(By.CssSelector("button[id='truste-consent-button']"));
+                //    agreeBtn.Click();
+                //    AppendOutput("Click truste-consent-button");
+                //}
+                //catch (Exception ex)
+                //{
+                //    AppendOutput("Error occur while clicking agree cookies button");
+                //}
+
                 //Start to create your custom workout:
                 //go to workout page
                 List<int> powerList = new List<int>();
@@ -912,6 +926,20 @@ namespace CyclingWorkoutRobot
             }
 
 
+        }
+
+        private void ClickAgreeButton()
+        {
+            try
+            {
+                IWebElement agreeBtn = driver.FindElement(By.CssSelector("button[id='truste-consent-button']"));
+                agreeBtn.Click();
+                AppendOutput("Click truste-consent-button");
+            }
+            catch (Exception ex)
+            {
+                AppendOutput("Error occur while clicking agree cookies button");
+            }
         }
 
         private void AppendOutput(string output)
