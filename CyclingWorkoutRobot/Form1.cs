@@ -828,10 +828,15 @@ namespace CyclingWorkoutRobot
                     ((IJavaScriptExecutor)driver).ExecuteScript(@"document.querySelector(""#new-step"").click()");
                     AppendOutput("Click next step.");
 
-                    //select last duration dropdownlist
+                    //press last edit step
+                    var allEditStep = driver.FindElements(By.CssSelector("button.editable-step-edit-button"));
+                    IWebElement iLastEditStep = allEditStep[allEditStep.Count() - 1];
+                    iLastEditStep.Click();
+                    AppendOutput("Clicked edit stpe.");
 
+                    //select last duration dropdownlist
                     var allSelectDuration = driver.FindElements(By.CssSelector("select[name=duration]"));
-                    IWebElement iLastSelectDuration = allSelectDuration[allSelectDuration.Count() - 1];
+                    IWebElement iLastSelectDuration = allSelectDuration[allSelectDuration.Count() - 1];                    
                     SelectElement lastSelectDuration = new SelectElement(iLastSelectDuration);
                     lastSelectDuration.SelectByValue("time");
                     AppendOutput("Select duration:time.");
@@ -839,7 +844,7 @@ namespace CyclingWorkoutRobot
                     //set duration time in the last duration time textbox                                
                     int minute = durationTimeInSecond / 60;
                     int second = durationTimeInSecond % 60;
-                    var allInputDurationTime = driver.FindElements(By.CssSelector("input[name=duration-time]"));
+                    var allInputDurationTime = driver.FindElements(By.CssSelector("input.duration-time-input"));
                     IWebElement iLastInputDuration = allInputDurationTime[allInputDurationTime.Count() - 1];
                     iLastInputDuration.SendKeys(minute + ":" + second.ToString("00"));
                     AppendOutput("Set duration Time:" + minute + ":" + second.ToString("00"));
