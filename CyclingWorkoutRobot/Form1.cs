@@ -835,54 +835,33 @@ namespace CyclingWorkoutRobot
                     AppendOutput("Clicked edit stpe.");
 
                     //select last duration dropdownlist
-                    var allSelectDuration = driver.FindElements(By.CssSelector("select[name=duration]"));
-                    IWebElement iLastSelectDuration = allSelectDuration[allSelectDuration.Count() - 1];                    
-                    SelectElement lastSelectDuration = new SelectElement(iLastSelectDuration);
-                    lastSelectDuration.SelectByValue("time");
-                    AppendOutput("Select duration:time.");
+                    //var allSelectDuration = driver.FindElements(By.CssSelector("select[name=duration]"));
+                    //IWebElement iLastSelectDuration = allSelectDuration[allSelectDuration.Count() - 1];                    
+                    //SelectElement lastSelectDuration = new SelectElement(iLastSelectDuration);
+                    //lastSelectDuration.SelectByValue("time");
+                    //AppendOutput("Select duration:time.");
 
-                    //set duration time in the last duration time textbox                                
+                    //set duration time in the last duration time textbox
+                    int hour = durationTimeInSecond / 3600;
                     int minute = durationTimeInSecond / 60;
                     int second = durationTimeInSecond % 60;
                     var allInputDurationTime = driver.FindElements(By.CssSelector("input.duration-time-input"));
                     IWebElement iLastInputDuration = allInputDurationTime[allInputDurationTime.Count() - 1];
-                    iLastInputDuration.SendKeys(minute + ":" + second.ToString("00"));
+                    iLastInputDuration.Clear();
+                    //iLastInputDuration.SendKeys(OpenQA.Selenium.Keys.Delete);
+                    iLastInputDuration.SendKeys(hour.ToString().PadLeft(2,'0') + ":" + minute.ToString().PadLeft(2, '0') +
+                        ":" + second.ToString().PadLeft(2, '0'));
                     AppendOutput("Set duration Time:" + minute + ":" + second.ToString("00"));
 
-                    //click last add-step-target href
-                    var clickHrefSuccess = false;
-                    int clickAddStepCount = 0;
-                    do
-                    {
-                        if (clickAddStepCount > 10)
-                        {
-                            AppendOutput("Click add-step button fail more than 10 times, try again later.");
-                            return false;
-                        }
-                        try
-                        {
-                            AppendOutput("Try to click add-step-target.");
-                            var allHrefAddStepTarget = driver.FindElements(By.CssSelector("a[data-target=add-step-target]"));
-                            IWebElement iLastHrefAddStepTarget = allHrefAddStepTarget[allHrefAddStepTarget.Count() - 1];
-                            WaitForSomething("add-step-target");
-                            iLastHrefAddStepTarget.Click();
-                            WaitForSomething(@"select-step-target", 3, 1000, true);
-                            //select last  select-step-target ddl and set value to custom power                
-                            var allSelectCustomPower = driver.FindElements(By.CssSelector("select[name=select-step-target]"));
-                            IWebElement iLastSelectCustomPower = allSelectCustomPower[allSelectCustomPower.Count() - 1];
-                            SelectElement lastSelectCustomPower = new SelectElement(iLastSelectCustomPower);
-                            lastSelectCustomPower.SelectByIndex(lastSelectCustomPower.Options.Count - 1);
-                            clickHrefSuccess = true;
-                            AppendOutput("Click add-step-target success.");
-                        }
-                        catch (Exception ex)
-                        {
-                            clickAddStepCount++;
-                            AppendOutput("Click add-step-target fail!!");
-                            Console.WriteLine(ex.ToString());
-                            SpinWait.SpinUntil(() => false, 1000);
-                        }
-                    } while (clickHrefSuccess == false);
+                    AppendOutput("Try to click select-step-target.");
+                    //select last  select-step-target ddl and set value to custom power                
+                    var allSelectCustomPower = driver.FindElements(By.CssSelector("select[name=select-step-target]"));
+                    IWebElement iLastSelectCustomPower = allSelectCustomPower[allSelectCustomPower.Count() - 1];
+                    SelectElement lastSelectCustomPower = new SelectElement(iLastSelectCustomPower);
+                    lastSelectCustomPower.SelectByIndex(lastSelectCustomPower.Options.Count - 1);      
+                    AppendOutput("Click add-step-target success.");
+
+                    
 
 
                     IWebElement iFooterLink = driver.FindElement(By.CssSelector("a[target*=footer_link]"));
@@ -906,6 +885,11 @@ namespace CyclingWorkoutRobot
                     IWebElement iLastInputTargetPowerUpperBound = allInputTargetPowerUpperBound[allInputTargetPowerUpperBound.Count() - 1];
                     iLastInputTargetPowerUpperBound.SendKeys(upperBoundWatt.ToString());
                     AppendOutput("Set upper bound of target power = " + upperBoundWatt.ToString());
+
+                    var allWorkoutStepDoneEdit = driver.FindElements(By.CssSelector("button.workout-step-done-editing"));
+                    IWebElement iLastWorkoutStepDoneEdit = allWorkoutStepDoneEdit[allWorkoutStepDoneEdit.Count() - 1];
+                    iLastWorkoutStepDoneEdit.Click();
+                    AppendOutput("Done edit.");
                 }
 
                 //change workout name based on csv file name                       
