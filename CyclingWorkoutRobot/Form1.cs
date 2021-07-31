@@ -567,6 +567,7 @@ namespace CyclingWorkoutRobot
             string msg = @"";
             driver.Navigate().GoToUrl("https://connect.garmin.com/");
 
+
             //prevent RWD to hide element
 
             driver.Manage().Window.Maximize();
