@@ -11,13 +11,10 @@ using System.IO;
 using System.Linq;
 using System.Management;
 using System.Reflection;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static CyclingWorkoutRobot.Extensions;
 using static CyclingWorkoutRobot.Models;
 
 namespace CyclingWorkoutRobot
@@ -46,6 +43,8 @@ namespace CyclingWorkoutRobot
         public static List<string> chromeArguments = new List<string>();
 
         public string exampleWorkoutFileBase64 = "cG93ZXIgcGVyY2VudGFnZSBsb3dlciBib3VuZCxwb3dlciBwZXJjZW50YWdlIHVwcGVyIGJvdW5kLHRpbWUoc2Vjb25kKQ0KNDAsNDAsMzAwDQo5MCw5MCwzNjANCjQwLDQwLDMwMA0KOTAsOTAsMzYwDQo0MCw0MCwzMDANCjkwLDkwLDM2MA0KNDAsNDAsMzAwDQo=";
+
+        public string two02108_22mins_base64 = "cG93ZXIgcGVyY2VudGFnZSBsb3dlciBib3VuZCxwb3dlciBwZXJjZW50YWdlIHVwcGVyIGJvdW5kLHRpbWUoc2Vjb25kKQ0KNTUsNjUsNjANCjc1LDkxLDYwDQo5NSwxMDAsNjANCjEwMCwxMTAsNjANCjEsMjUsNDUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjEsMjUsMTk1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxLDI1LDE5NQ==";
 
 
         #endregion
@@ -122,8 +121,6 @@ namespace CyclingWorkoutRobot
                     dbRepo.InserUpdateUserFTP(userId, txtFTP.Text);
                 }
 
-
-
             }
         }
 
@@ -144,8 +141,6 @@ namespace CyclingWorkoutRobot
             {
                 dbRepo.DeleteUserFTP(userId);
             }
-
-
 
         }
 
@@ -287,12 +282,9 @@ namespace CyclingWorkoutRobot
                     }
 
 
-
-
                     MessageBox.Show("Hide web browser option will login automatically.".ToDefaultLanguage()
                    + Environment.NewLine
                    + "Login id and password for garmin are needed to save in your local PC.".ToDefaultLanguage());
-
 
                 }
                 else
@@ -329,11 +321,9 @@ namespace CyclingWorkoutRobot
 
         private void btnSaveIdPwd_Click(object sender, EventArgs e)
         {
-
-            //string codeValue = "";
+            
             if (txtLoginId.Text.Trim() != "" && txtPassword.Text.Trim() != "")
             {
-
                 //InsertUserLoginIdPwdToDB();
                 dbRepo.InsertUserLoginIdPwdToDB(txtLoginId.Text.Trim(), txtPassword.Text.Trim());
                 MessageBox.Show("Save Success!".ToDefaultLanguage());
@@ -392,21 +382,39 @@ namespace CyclingWorkoutRobot
 
                 outputText = "";
             }
-
-            //Application.DoEvents();
+           
         }
 
         private void btnExampleWorkoutFileDownload_Click(object sender, EventArgs e)
         {
+            string selectedFileName = cboDownloadFiles.Text;
+            string base64File = "";
+
+            if(selectedFileName == "")
+            {
+                MessageBox.Show("Please select a file name!".ToDefaultLanguage());
+                return;
+            }
+
             SaveFileDialog savefile = new SaveFileDialog();
             // set a default file name
-            savefile.FileName = "example_workout.csv";
+            if(selectedFileName == "example workout")
+            {
+                savefile.FileName = "example_workout.csv";
+                base64File = exampleWorkoutFileBase64;
+            }
+            else if(selectedFileName == "202108 22 Minutes")
+            {
+                savefile.FileName = "202108_22mins_high_intensity_short_rest.csv";
+                base64File = two02108_22mins_base64;
+
+            }
             // set filters - this can be done in properties as well
             savefile.Filter = "Csv files (*.csv)|*.csv|All files (*.*)|*.*";
 
             if (savefile.ShowDialog() == DialogResult.OK)
             {
-                Byte[] bytes = Convert.FromBase64String(exampleWorkoutFileBase64);
+                Byte[] bytes = Convert.FromBase64String(base64File);
                 File.WriteAllBytes(savefile.FileName, bytes);
             }
         }
@@ -424,8 +432,7 @@ namespace CyclingWorkoutRobot
             if (Process.GetProcessesByName("chromedriver").Count() == 0)
             {
                 AppendOutput("chromedriver not exist.");
-                ChromeOptions chromeBrowserOptions = new ChromeOptions();
-                //var driverService = ChromeDriverService.CreateDefaultService(@"ChromeDriver");
+                ChromeOptions chromeBrowserOptions = new ChromeOptions();                
                 var driverService = ChromeDriverService.CreateDefaultService();
                 driverService.HideCommandPromptWindow = true;
                 chromeBrowserOptions.AddArguments(new List<string>() { "no-sandbox", "disable-gpu" });//save pc resource
@@ -577,16 +584,7 @@ namespace CyclingWorkoutRobot
             WaitForSomething(regPattern);
 
             ClickAgreeButton();
-            //try
-            //{
-            //    IWebElement agreeBtn = driver.FindElement(By.CssSelector("button[id='truste-consent-button']"));
-            //    agreeBtn.Click();
-            //    AppendOutput("Click truste-consent-button");
-            //}
-            //catch (Exception ex)
-            //{
-            //    AppendOutput("Error occur while clicking agree cookies button");
-            //}
+           
 
 
             //check if login success status
@@ -733,23 +731,13 @@ namespace CyclingWorkoutRobot
             {
                 return false;
             }
-        }
-
-        private void WaitAndShowMsg(string regPattern, string msg)
-        {
-            if (WaitForSomething(regPattern, 20) == false)
-            {
-                MessageBox.Show(msg);
-                return;
-            }
-        }
+        }      
 
         private bool CreateWorkout(string fullFileName)
         {
             string regPattern;
             try
-            {
-                //string regPattern = @"";
+            {                
                 AppendOutput("Click create workout.");
                 ((IJavaScriptExecutor)driver).ExecuteScript(@"document.querySelector(""a[href = '/modern/workouts']"").click()");
                 //wait for select workout dropdownlist to show up and select cycling option
@@ -776,17 +764,7 @@ namespace CyclingWorkoutRobot
                 ((IJavaScriptExecutor)driver).ExecuteScript(@"document.querySelector(""div.step-delete a"").click()");
 
                 ClickAgreeButton();
-                //try
-                //{
-                //    IWebElement agreeBtn = driver.FindElement(By.CssSelector("button[id='truste-consent-button']"));
-                //    agreeBtn.Click();
-                //    AppendOutput("Click truste-consent-button");
-                //}
-                //catch (Exception ex)
-                //{
-                //    AppendOutput("Error occur while clicking agree cookies button");
-                //}
-
+              
                 //Start to create your custom workout:
                 //go to workout page
                 List<int> powerList = new List<int>();
@@ -834,14 +812,7 @@ namespace CyclingWorkoutRobot
                     IWebElement iLastEditStep = allEditStep[allEditStep.Count() - 1];
                     iLastEditStep.Click();
                     AppendOutput("Clicked edit stpe.");
-
-                    //select last duration dropdownlist
-                    //var allSelectDuration = driver.FindElements(By.CssSelector("select[name=duration]"));
-                    //IWebElement iLastSelectDuration = allSelectDuration[allSelectDuration.Count() - 1];                    
-                    //SelectElement lastSelectDuration = new SelectElement(iLastSelectDuration);
-                    //lastSelectDuration.SelectByValue("time");
-                    //AppendOutput("Select duration:time.");
-
+                   
                     //set duration time in the last duration time textbox
                     int hour = durationTimeInSecond / 3600;
                     int minute = durationTimeInSecond / 60;
@@ -861,16 +832,11 @@ namespace CyclingWorkoutRobot
                     SelectElement lastSelectCustomPower = new SelectElement(iLastSelectCustomPower);
                     lastSelectCustomPower.SelectByIndex(lastSelectCustomPower.Options.Count - 1);      
                     AppendOutput("Click add-step-target success.");
-
-                    
-
-
+                   
                     IWebElement iFooterLink = driver.FindElement(By.CssSelector("a[target*=footer_link]"));
                     OpenQA.Selenium.Interactions.Actions scrollAction = new OpenQA.Selenium.Interactions.Actions(driver);
                     scrollAction.MoveToElement(iFooterLink);
                     scrollAction.Perform();
-
-
 
                     //set lowerbound of this workout step        
                     int ftp = Convert.ToInt16(txtFTP.Text);
@@ -1192,7 +1158,9 @@ namespace CyclingWorkoutRobot
                 //save button
                 var saveLoginPwdButton = dbRepo.GetTranslateObj("Save");
                 //example wokrout file button
-                var exampleWorkoutFileButton = dbRepo.GetTranslateObj("example workout file");
+                var exampleWorkoutFileButton = dbRepo.GetTranslateObj("Download");
+                //label:Download Example Workout File
+                var downloadExampleFileLabel = dbRepo.GetTranslateObj("Download Example Workout File");
 
                 if (defaultLanguage == LanguageOption.English)
                 {
@@ -1205,6 +1173,7 @@ namespace CyclingWorkoutRobot
                     btnSaveIdPwd.Text = saveLoginPwdButton.eng;
                     chkRememberIdPwd.Text = rememberIdPwdCheckbox.eng;
                     btnExampleWorkoutFileDownload.Text = exampleWorkoutFileButton.eng;
+                    lblDownloadFile.Text = downloadExampleFileLabel.eng;
                 }
                 else if (defaultLanguage == LanguageOption.日本語)
                 {
@@ -1217,6 +1186,7 @@ namespace CyclingWorkoutRobot
                     btnSaveIdPwd.Text = saveLoginPwdButton.jpn;
                     chkRememberIdPwd.Text = rememberIdPwdCheckbox.jpn;
                     btnExampleWorkoutFileDownload.Text = exampleWorkoutFileButton.jpn;
+                    lblDownloadFile.Text = downloadExampleFileLabel.jpn;
                 }
                 else if (defaultLanguage == LanguageOption.简体中文)
                 {
@@ -1229,6 +1199,7 @@ namespace CyclingWorkoutRobot
                     btnSaveIdPwd.Text = saveLoginPwdButton.chs;
                     chkRememberIdPwd.Text = rememberIdPwdCheckbox.chs;
                     btnExampleWorkoutFileDownload.Text = exampleWorkoutFileButton.chs;
+                    lblDownloadFile.Text = downloadExampleFileLabel.chs;
                 }
                 else if (defaultLanguage == LanguageOption.繁體中文)
                 {
@@ -1241,9 +1212,10 @@ namespace CyclingWorkoutRobot
                     btnSaveIdPwd.Text = saveLoginPwdButton.cht;
                     chkRememberIdPwd.Text = rememberIdPwdCheckbox.cht;
                     btnExampleWorkoutFileDownload.Text = exampleWorkoutFileButton.cht;
+                    lblDownloadFile.Text = downloadExampleFileLabel.cht;
                 }
                 lblLanguage.Text = lblLanguage.Text + ":";
-
+                lblDownloadFile.Text = lblDownloadFile.Text + ":";
 
             }
 
