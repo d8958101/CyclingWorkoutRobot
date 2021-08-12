@@ -46,6 +46,7 @@ namespace CyclingWorkoutRobot
 
         public string two02108_22mins_base64 = "cG93ZXIgcGVyY2VudGFnZSBsb3dlciBib3VuZCxwb3dlciBwZXJjZW50YWdlIHVwcGVyIGJvdW5kLHRpbWUoc2Vjb25kKQ0KMSwyNSw2MA0KNTUsNjUsNjANCjc1LDkxLDYwDQo5NSwxMDAsNjANCjEwMCwxMTAsNjANCjEsMjUsNDUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTk1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxLDI1LDE4MA==";
 
+        public string ftp = "";
 
         #endregion
 
@@ -211,6 +212,7 @@ namespace CyclingWorkoutRobot
                 return;
             }
             bool workoutNeedToBeUploaded = false;//
+            ftp = txtFTP.Text;
             for (int i = 0; i < gridWorkout.Rows.Count - 1; i++)
             {
                 DataGridViewRow row = gridWorkout.Rows[i];
@@ -739,7 +741,8 @@ namespace CyclingWorkoutRobot
             try
             {                
                 AppendOutput("Click create workout.");
-                ((IJavaScriptExecutor)driver).ExecuteScript(@"document.querySelector(""a[href = '/modern/workouts']"").click()");
+                driver.Navigate().GoToUrl("https://connect.garmin.com/modern/workouts");
+                //((IJavaScriptExecutor)driver).ExecuteScript(@"document.querySelector(""a[href = '/modern/workouts']"").click()");
                 //wait for select workout dropdownlist to show up and select cycling option
                 AppendOutput("Select cycling workout.");
                 regPattern = @"select-workout";
@@ -811,7 +814,7 @@ namespace CyclingWorkoutRobot
                     var allEditStep = driver.FindElements(By.CssSelector("button.editable-step-edit-button"));
                     IWebElement iLastEditStep = allEditStep[allEditStep.Count() - 1];
                     iLastEditStep.Click();
-                    AppendOutput("Clicked edit stpe.");
+                    AppendOutput("Clicked edit step.");
                    
                     //set duration time in the last duration time textbox
                     int hour = durationTimeInSecond / 3600;
@@ -864,7 +867,7 @@ namespace CyclingWorkoutRobot
                 ((IJavaScriptExecutor)driver).ExecuteScript(@"document.querySelector('button.inline-edit-trigger.has-tooltip').click()");
                 //step2:send new workout name to textbox
                 ((IJavaScriptExecutor)driver).ExecuteScript(@"document.querySelector('div[class=inline-edit-editable-text]').innerHTML =
-                '" + Path.GetFileNameWithoutExtension(fullFileName) + "'");
+                '" + Path.GetFileNameWithoutExtension(fullFileName) +"_ftp_" + ftp + "'");
                 //step3: press enter to finish edit of workout name
                 driver.FindElement(By.CssSelector("div[class=inline-edit-editable-text]")).SendKeys(OpenQA.Selenium.Keys.Return);
 
