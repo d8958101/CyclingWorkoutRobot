@@ -46,7 +46,11 @@ namespace CyclingWorkoutRobot
 
         public string two02108_22mins_base64 = "cG93ZXIgcGVyY2VudGFnZSBsb3dlciBib3VuZCxwb3dlciBwZXJjZW50YWdlIHVwcGVyIGJvdW5kLHRpbWUoc2Vjb25kKQ0KMSwyNSw2MA0KNTUsNjUsNjANCjc1LDkxLDYwDQo5NSwxMDAsNjANCjEwMCwxMTAsNjANCjEsMjUsNDUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTUNCjExMCwxMzUsNDUNCjEsMjUsMTk1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxMTAsMTM1LDQ1DQoxLDI1LDE1DQoxLDI1LDE4MA==";
 
+        public string wko_tempo_45mins_base64 = "cG93ZXIgcGVyY2VudGFnZSBsb3dlciBib3VuZCxwb3dlciBwZXJjZW50YWdlIHVwcGVyIGJvdW5kLHRpbWUoc2Vjb25kKQ0KMSw1NiwzMDANCjc2LDg4LDI3MDANCjEsNTYsMzAwDQo=";
+
         public string ftp = "";
+
+
 
         #endregion
 
@@ -59,6 +63,9 @@ namespace CyclingWorkoutRobot
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //hide advanced option
+            chkShowAdv.Visible = false;
+
             pageLoadING = true;
 
             bwUpload.WorkerReportsProgress = true;
@@ -409,6 +416,12 @@ namespace CyclingWorkoutRobot
             {
                 savefile.FileName = "202108_22mins_high_intensity_short_rest.csv";
                 base64File = two02108_22mins_base64;
+
+            }
+            else if (selectedFileName == "wko_tempo_45_mins")
+            {
+                savefile.FileName = "wko_tempo_45_mins.csv";
+                base64File = wko_tempo_45mins_base64;
 
             }
             // set filters - this can be done in properties as well
