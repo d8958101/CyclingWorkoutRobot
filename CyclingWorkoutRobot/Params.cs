@@ -14,6 +14,7 @@ namespace CyclingWorkoutRobot
         public static LanguageOption defaultLanguage =
            Common.LanguageOptionStringToEnum(System.Configuration.ConfigurationManager.AppSettings["DefaultLanguage"]);
         public static string codeTypeFTP = "UserFTP";
+        public static string codeTypeTTE = "UserTTE";
         public static string codeIdHideBrowser = "hideBrowserOption";
         public static string codeTypeHideBrowser = "param";
         public static string codeIdRememberIdPwd = "rememberIdPwdOption";

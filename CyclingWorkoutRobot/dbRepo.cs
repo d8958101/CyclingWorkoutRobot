@@ -63,6 +63,51 @@ namespace CyclingWorkoutRobot
 
         #endregion
 
+        #region TTE related
+
+        public static void InserUpdateUserTTE(string userId, string newTTE)
+        {
+
+            using (mydbEntities db = new mydbEntities())
+            {
+                var userTTE = db.tdcode.Where(t => t.code_id == userId && t.code_type == Params.codeTypeTTE).FirstOrDefault();
+                if (userTTE == null)
+                {
+                    //insert user TTE
+                    tdcode codeNew = new tdcode();
+                    codeNew.code_id = userId;
+                    codeNew.code_type = Params.codeTypeTTE;
+                    codeNew.code_value = newTTE;
+
+                    db.tdcode.Add(codeNew);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    //update user FTP
+                    userTTE.code_value = newTTE;
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public static string GetUserTTE(string userId)
+        {
+            string userTTE = "0:30:00";
+            using (mydbEntities db = new mydbEntities())
+            {
+                var userTTEObj = db.tdcode.Where(t => t.code_id == userId && t.code_type == Params.codeTypeTTE).FirstOrDefault();
+                if (userTTE != null)
+                {
+                    userTTE = userTTEObj.code_value;
+                }
+
+            }
+            return userTTE;
+        }
+
+        #endregion
+
         #region FTP related 
 
         //public static string codeTypeFTP = "UserFTP";

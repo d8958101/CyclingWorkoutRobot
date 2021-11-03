@@ -59,7 +59,7 @@
             // txtFTP
             // 
             this.txtFTP.Location = new System.Drawing.Point(292, 9);
-            this.txtFTP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFTP.Margin = new System.Windows.Forms.Padding(4);
             this.txtFTP.Name = "txtFTP";
             this.txtFTP.Size = new System.Drawing.Size(148, 29);
             this.txtFTP.TabIndex = 8;
@@ -91,7 +91,7 @@
             this.cboLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.cboLanguage.FormattingEnabled = true;
             this.cboLanguage.Location = new System.Drawing.Point(1128, 44);
-            this.cboLanguage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboLanguage.Margin = new System.Windows.Forms.Padding(4);
             this.cboLanguage.Name = "cboLanguage";
             this.cboLanguage.Size = new System.Drawing.Size(180, 118);
             this.cboLanguage.TabIndex = 10;
@@ -111,7 +111,7 @@
             // btnOpenFile
             // 
             this.btnOpenFile.Location = new System.Drawing.Point(32, 44);
-            this.btnOpenFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOpenFile.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(252, 60);
             this.btnOpenFile.TabIndex = 12;
@@ -122,7 +122,7 @@
             // txtFileName
             // 
             this.txtFileName.Location = new System.Drawing.Point(292, 44);
-            this.txtFileName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFileName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFileName.Multiline = true;
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -133,7 +133,7 @@
             // 
             this.gridWorkout.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridWorkout.Location = new System.Drawing.Point(14, 262);
-            this.gridWorkout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridWorkout.Margin = new System.Windows.Forms.Padding(4);
             this.gridWorkout.Name = "gridWorkout";
             this.gridWorkout.RowHeadersWidth = 62;
             this.gridWorkout.RowTemplate.Height = 24;
@@ -143,7 +143,7 @@
             // btnUpload
             // 
             this.btnUpload.Location = new System.Drawing.Point(620, 44);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(128, 60);
             this.btnUpload.TabIndex = 15;
@@ -155,7 +155,7 @@
             // 
             this.chkShowAdv.AutoSize = true;
             this.chkShowAdv.Location = new System.Drawing.Point(297, 183);
-            this.chkShowAdv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkShowAdv.Margin = new System.Windows.Forms.Padding(4);
             this.chkShowAdv.Name = "chkShowAdv";
             this.chkShowAdv.Size = new System.Drawing.Size(202, 22);
             this.chkShowAdv.TabIndex = 16;
@@ -166,7 +166,7 @@
             // chkHideBrowser
             // 
             this.chkHideBrowser.Location = new System.Drawing.Point(518, 162);
-            this.chkHideBrowser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkHideBrowser.Margin = new System.Windows.Forms.Padding(4);
             this.chkHideBrowser.Name = "chkHideBrowser";
             this.chkHideBrowser.Size = new System.Drawing.Size(220, 64);
             this.chkHideBrowser.TabIndex = 17;
@@ -187,7 +187,7 @@
             // txtOutput
             // 
             this.txtOutput.Location = new System.Drawing.Point(766, 44);
-            this.txtOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOutput.Margin = new System.Windows.Forms.Padding(4);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
@@ -197,7 +197,7 @@
             // txtLoginId
             // 
             this.txtLoginId.Location = new System.Drawing.Point(864, 174);
-            this.txtLoginId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLoginId.Margin = new System.Windows.Forms.Padding(4);
             this.txtLoginId.Name = "txtLoginId";
             this.txtLoginId.Size = new System.Drawing.Size(122, 29);
             this.txtLoginId.TabIndex = 20;
@@ -215,7 +215,7 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(1017, 174);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(122, 29);
@@ -234,7 +234,7 @@
             // btnSaveIdPwd
             // 
             this.btnSaveIdPwd.Location = new System.Drawing.Point(1158, 172);
-            this.btnSaveIdPwd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveIdPwd.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveIdPwd.Name = "btnSaveIdPwd";
             this.btnSaveIdPwd.Size = new System.Drawing.Size(112, 34);
             this.btnSaveIdPwd.TabIndex = 24;
@@ -246,7 +246,7 @@
             // 
             this.chkRememberIdPwd.AutoSize = true;
             this.chkRememberIdPwd.Location = new System.Drawing.Point(518, 236);
-            this.chkRememberIdPwd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkRememberIdPwd.Margin = new System.Windows.Forms.Padding(4);
             this.chkRememberIdPwd.Name = "chkRememberIdPwd";
             this.chkRememberIdPwd.Size = new System.Drawing.Size(231, 22);
             this.chkRememberIdPwd.TabIndex = 25;
@@ -265,7 +265,7 @@
             // btnExampleWorkoutFileDownload
             // 
             this.btnExampleWorkoutFileDownload.Location = new System.Drawing.Point(102, 194);
-            this.btnExampleWorkoutFileDownload.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExampleWorkoutFileDownload.Margin = new System.Windows.Forms.Padding(4);
             this.btnExampleWorkoutFileDownload.Name = "btnExampleWorkoutFileDownload";
             this.btnExampleWorkoutFileDownload.Size = new System.Drawing.Size(182, 34);
             this.btnExampleWorkoutFileDownload.TabIndex = 26;
@@ -289,11 +289,13 @@
             this.cboDownloadFiles.Items.AddRange(new object[] {
             "example workout",
             "202108 22 Minutes",
-            "wko_tempo_45mins"});
-            this.cboDownloadFiles.Location = new System.Drawing.Point(102, 154);
-            this.cboDownloadFiles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            "wko_tempo_45mins",
+            "wko_long_tempo_150%",
+            "wko_long_tempo_200%"});
+            this.cboDownloadFiles.Location = new System.Drawing.Point(32, 154);
+            this.cboDownloadFiles.Margin = new System.Windows.Forms.Padding(4);
             this.cboDownloadFiles.Name = "cboDownloadFiles";
-            this.cboDownloadFiles.Size = new System.Drawing.Size(180, 26);
+            this.cboDownloadFiles.Size = new System.Drawing.Size(250, 26);
             this.cboDownloadFiles.TabIndex = 28;
             // 
             // Form1

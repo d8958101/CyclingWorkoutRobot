@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using static CyclingWorkoutRobot.Models;
+using Microsoft.VisualBasic;
 
 namespace CyclingWorkoutRobot
 {
@@ -28,6 +29,8 @@ namespace CyclingWorkoutRobot
         public static string userId = "user1";
 
         int bmpFinalWidth = 270;
+
+        public static string defaultTTE = "0:30:00";
 
         DataTable dtWorkout = new DataTable();
 
@@ -398,11 +401,30 @@ namespace CyclingWorkoutRobot
         {
             string selectedFileName = cboDownloadFiles.Text;
             string base64File = "";
+            string inputTTE = "";
 
-            if(selectedFileName == "")
+            if (selectedFileName == "")
             {
                 MessageBox.Show("Please select a file name!".ToDefaultLanguage());
                 return;
+            }
+
+            if(selectedFileName.Contains("wko_long_tempo"))
+            {
+                //string input = Interaction.InputBox("Please input your TTE!", "Title", "Default", -1, -1);
+                inputTTE = Interaction.InputBox("Please input your TTE!".ToDefaultLanguage(),
+                    "TTE Needed!".ToDefaultLanguage(),dbRepo.GetUserTTE(userId), -1, -1);
+                //return;
+                if (inputTTE == "")
+                {                    
+                    return;
+                }
+                else
+                {
+                    dbRepo.InserUpdateUserTTE(userId, inputTTE);
+                    defaultTTE = inputTTE;
+                }
+                
             }
 
             SaveFileDialog savefile = new SaveFileDialog();
@@ -418,10 +440,22 @@ namespace CyclingWorkoutRobot
                 base64File = two02108_22mins_base64;
 
             }
-            else if (selectedFileName == "wko_tempo_45_mins")
+            else if (selectedFileName == "wko_tempo_45mins")
             {
-                savefile.FileName = "wko_tempo_45_mins.csv";
+                savefile.FileName = "WKOTempo45mins.csv";
                 base64File = wko_tempo_45mins_base64;
+
+            }
+            else if (selectedFileName == "wko_long_tempo_150%")
+            {
+                savefile.FileName = "WKOLongTempo150P.csv";
+                base64File = GetWkoLongTempoWorkout(defaultTTE, 150);
+
+            }
+            else if (selectedFileName == "wko_long_tempo_200%")
+            {
+                savefile.FileName = "WKOLongTempo200P.csv";
+                base64File = GetWkoLongTempoWorkout(defaultTTE, 200);
 
             }
             // set filters - this can be done in properties as well
@@ -1702,6 +1736,24 @@ namespace CyclingWorkoutRobot
 
         #endregion
 
+        #region create TTE workouts
 
+        private string GetWkoLongTempoWorkout(string TTE, int percentage)
+        {
+            TimeSpan ts = TimeSpan.Parse(TTE);
+            int ttsInSeconds = (int)ts.TotalSeconds;
+            ttsInSeconds = ttsInSeconds * percentage / 100;
+            string fileString = "";
+            fileString = "power percentage lower bound,power percentage upper bound,time(second)" + Environment.NewLine;
+            fileString += "1,56,300" + Environment.NewLine;            
+            fileString += "85,85," + ttsInSeconds.ToString()  + Environment.NewLine;
+            fileString += "1,56,300" + Environment.NewLine;
+
+            string resultBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(fileString));
+
+            return resultBase64;
+        }
+
+        #endregion
     }
 }
